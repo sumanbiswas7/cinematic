@@ -1,0 +1,15 @@
+$accent: #ff4350;
+$accent-dark: #f83646;
+
+$background: #222a31;
+$background-dark: #1a1c20;
+
+$font-main: #fff;
+$font-sub-1: #8b949b;
+$font-sub-2: #393e47;
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
