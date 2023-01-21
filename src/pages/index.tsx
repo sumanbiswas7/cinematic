@@ -11,9 +11,10 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.svg" />
       </Head>
+      <NavBar />
       <main className={styles.main}>
-        <NavBar />
-        <div className={styles.main_section}>hiii</div>
+        <div className={styles.top_bar}></div>
+        <div className={styles.main_content}></div>
       </main>
     </>
   );

@@ -1,5 +1,4 @@
-:root {
-}
+@import "./constants.scss";
 
 * {
   box-sizing: border-box;
@@ -11,4 +10,13 @@
 
 html,
 body {
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  // width: 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: $accent;
 }
