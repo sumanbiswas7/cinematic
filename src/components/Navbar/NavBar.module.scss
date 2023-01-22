@@ -6,6 +6,11 @@
   position: fixed;
   width: $navbar-width;
   height: 100%;
+
+  & > ul {
+    text-decoration: none;
+    list-style: none;
+  }
 }
 
 .logo_container {
@@ -16,4 +21,36 @@
   & > img {
     width: 50%;
   }
+
+  margin-bottom: 2.5rem;
+}
+
+.link {
+  @include flex-center;
+  justify-content: flex-start;
+  height: 2.5rem;
+  padding-left: 2rem;
+  font-weight: 400;
+  font-size: 0.85rem;
+  color: $font-sub-1;
+}
+.link_con {
+  text-decoration: none;
+}
+.active {
+  background-color: #222a31;
+  color: $accent;
+}
+
+.active::after {
+  content: "";
+  width: 2.2rem;
+  height: 0.5rem;
+  right: 0;
+  position: absolute;
+  background-image: url("../../../public/navbar/arrow.svg");
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
