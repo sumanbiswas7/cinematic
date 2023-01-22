@@ -1,0 +1,37 @@
+@import "../../styles/constants.scss";
+
+.container {
+  $size: 9rem;
+  width: $size;
+
+  & > img {
+    max-width: 100%;
+    height: $size * 1.5;
+  }
+
+  .bottom_container {
+    font-size: 0.85rem;
+    @include flex-center;
+    justify-content: space-between;
+
+    & > div {
+      .name {
+        color: #c7d0d8;
+        font-weight: 600;
+      }
+      .type {
+        font-size: 0.7rem;
+        color: #829eb6;
+      }
+    }
+
+    & > span {
+      @include flex-center;
+      background-color: #277b44;
+      color: #fff;
+      width: 2rem;
+      height: 1.3rem;
+      border-radius: 1rem;
+    }
+  }
+}
