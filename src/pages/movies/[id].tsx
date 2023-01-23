@@ -1,4 +1,5 @@
 import { NavBar } from "@/components/Navbar/NavBar";
+import { SingleMovie } from "@/components/SingleMovie/SingleMovie";
 import { MainContent } from "@/layouts/MainContent";
 import styles from "./movieById.module.scss";
 
@@ -7,7 +8,9 @@ export default function movieById() {
     <>
       <NavBar />
       <MainContent>
-        <p>Favourites</p>
+        <div className={styles.container}>
+          <SingleMovie />
+        </div>
       </MainContent>
     </>
   );

@@ -1,9 +1,6 @@
 @import "../styles/constants.scss";
 
 .main {
-  // background-color: $background;
-  // height: 100%;
-  // width: 100%;
   margin-left: $navbar-width;
 }
 
@@ -16,7 +13,6 @@
 
 .main_content {
   padding: 1rem;
-  // height: 100vh;
 
   display: grid;
   gap: 2rem;

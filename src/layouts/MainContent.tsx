@@ -13,7 +13,7 @@ export function MainContent({ children, isLoading, title }: Props) {
   return (
     <main className={styles.main}>
       <div className={styles.top_bar}>
-        <img src="./logo.svg" />
+        <img src="/logo.svg" />
       </div>
       {!isLoading && <h2 className={styles.title}>{title}</h2>}
       {loading ? <CLoader /> : children}
