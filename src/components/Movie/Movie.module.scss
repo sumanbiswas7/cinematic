@@ -27,6 +27,7 @@
 
     & > span {
       @include flex-center;
+      right: 0;
       background-color: #277b44;
       color: #fff;
       width: 1.7rem;

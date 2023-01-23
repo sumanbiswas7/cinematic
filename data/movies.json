@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "name": "Intersteller",
+    "rating": 8.5,
+    "type": "Science Fiction",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Fight Club",
+    "rating": 8,
+    "type": "Thriller",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_fight_club.jpg"
+  },
+  {
+    "id": 3,
+    "name": "La La Land",
+    "rating": 8.5,
+    "type": "Romance",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_la_la_land.webp"
+  },
+  {
+    "id": 4,
+    "name": "The Matrix",
+    "rating": 8,
+    "type": "Science Fiction",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_the_matrix.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Django Unchained",
+    "rating": 8.5,
+    "type": "Western",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_django_unchained.jpg"
+  },
+  {
+    "id": 6,
+    "name": "The Good The Bad and The Ugly",
+    "rating": 8,
+    "type": "Western",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_the_good_the_bad_ugly.webp"
+  },
+  {
+    "id": 7,
+    "name": "Forrest Gump",
+    "rating": 8.5,
+    "type": "Drama",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_forrest_gump.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Inception",
+    "rating": 8.5,
+    "type": "Science Fiction",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_inception.jpg"
+  },
+  {
+    "id": 9,
+    "name": "Mulholland Drive",
+    "rating": 8,
+    "type": "Thriller",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/ed7d10be1071dcd976f8f170648efe3f.jpg"
+  },
+  {
+    "id": 10,
+    "name": "Green Book",
+    "rating": 8.5,
+    "type": "Drama",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/83ab4b0d0da38ee54fe01bd125800092.jpg"
+  },
+  {
+    "id": 11,
+    "name": "Buffalo '66",
+    "rating": 7.5,
+    "type": "Drama",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/1333d47e3ae881efc6a8b4185403f08c.jpg"
+  },
+  {
+    "id": 12,
+    "name": "American Psyco",
+    "rating": 8.5,
+    "type": "Thriller",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/images.jpeg"
+  },
+  {
+    "id": 13,
+    "name": "1917",
+    "rating": 8,
+    "type": "Action",
+    "image": "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/e080f41168a8ef24ba80c213eed49026.jpg"
+  }
+]

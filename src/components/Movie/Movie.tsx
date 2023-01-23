@@ -1,7 +1,9 @@
 import styles from "./Movie.module.scss";
 
 export function Movie({ imageUrl, name, type, rating }: Props) {
+  const ratingNum = parseFloat(rating.toString()).toFixed(1);
   const ratingColor = setRatingColor(rating);
+  const movieName = getMovieName(name);
 
   return (
     <div className={styles.container}>
@@ -9,10 +11,10 @@ export function Movie({ imageUrl, name, type, rating }: Props) {
 
       <div className={styles.bottom_container}>
         <div>
-          <p className={styles.name}>{name}</p>
+          <p className={styles.name}>{movieName}</p>
           <p className={styles.type}>{type}</p>
         </div>
-        <span style={{ backgroundColor: ratingColor }}>{rating}</span>
+        <span style={{ backgroundColor: ratingColor }}>{ratingNum}</span>
       </div>
     </div>
   );
@@ -29,4 +31,10 @@ interface Props {
   name: string;
   rating: number;
   type: string;
+}
+
+function getMovieName(name: string) {
+  const resName = name.substring(0, 14);
+  if (name.length > 14) return resName + "...";
+  else return resName;
 }

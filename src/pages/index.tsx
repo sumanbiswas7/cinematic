@@ -4,9 +4,12 @@ import { NavBar } from "@/components/Navbar/NavBar";
 import { Movie } from "@/components/Movie/Movie";
 import { MainContent } from "@/layouts/MainContent";
 import { useState } from "react";
+import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
+import movies from "../../data/movies.json";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
+
   function handleLoading() {
     setTimeout(() => {
       setLoading(false);
@@ -26,50 +29,18 @@ export default function Home() {
       <NavBar />
 
       <MainContent title="Recent Movies" isLoading={loading}>
-        <div className={styles.main_content}>
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-          <Movie
-            name="Intestellar"
-            rating={8.5}
-            type="SciFi, Adventure"
-            imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
-          />
-        </div>
+        <MovieGrid>
+          {movies.map((movie) => {
+            return (
+              <Movie
+                name={movie.name}
+                rating={movie.rating}
+                type={movie.type}
+                imageUrl={movie.image}
+              />
+            );
+          })}
+        </MovieGrid>
       </MainContent>
     </>
   );
