@@ -1,7 +1,8 @@
 @import "../../styles/constants.scss";
 
 .container {
-  $size: 9rem;
+  // $size: 9rem;
+  $size: 26vh;
   width: $size;
 
   & > img {
