@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import styles from "./NavBar.module.scss";
 import { Notification } from "../Notification/Notification";
+import Image from "next/image";
 
 export function NavBar() {
   const route = useRouter().route;
@@ -9,7 +10,7 @@ export function NavBar() {
   return (
     <nav className={styles.container}>
       <div className={styles.logo_container}>
-        <img src="./logo.svg" />
+        <img src="/logo.svg" />
       </div>
 
       <ul>

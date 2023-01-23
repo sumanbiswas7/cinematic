@@ -14,10 +14,10 @@ export function FriendRequest({ image, name, time }: Props) {
       </div>
       <div className={styles.btn_box}>
         <button>
-          <img src="./notification/tick.svg" />
+          <img src="/notification/tick.svg" />
         </button>
         <button>
-          <img src="./notification/cross.svg" />
+          <img src="/notification/cross.svg" />
         </button>
       </div>
     </div>
