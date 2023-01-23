@@ -3,6 +3,11 @@
 .main {
   margin-left: $navbar-width;
   
+  .title {
+    color: #fff;
+    font-weight: 200;
+    margin: 1rem;
+  }
 }
 
 .top_bar {

@@ -25,7 +25,7 @@ export default function Home() {
       </Head>
       <NavBar />
 
-      <MainContent isLoading={loading}>
+      <MainContent title="Recent Movies" isLoading={loading}>
         <div className={styles.main_content}>
           <Movie
             name="Intestellar"
