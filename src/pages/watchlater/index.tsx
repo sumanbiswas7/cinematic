@@ -6,7 +6,7 @@ export default function WatchLater() {
   return (
     <>
       <NavBar />
-      <MainContent>
+      <MainContent title="Watch Later">
         <p>Watch Later</p>
       </MainContent>
     </>

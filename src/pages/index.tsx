@@ -33,6 +33,7 @@ export default function Home() {
           {movies.map((movie) => {
             return (
               <Movie
+                key={movie.id}
                 name={movie.name}
                 rating={movie.rating}
                 type={movie.type}

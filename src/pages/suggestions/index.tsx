@@ -6,8 +6,8 @@ export default function Suggestions() {
   return (
     <>
       <NavBar />
-      <MainContent>
-        <p>Suggestions</p>
+      <MainContent title="Suggestions">
+        <p>Movie Suggestions</p>
       </MainContent>
     </>
   );

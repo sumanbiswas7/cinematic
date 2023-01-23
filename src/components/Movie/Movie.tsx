@@ -25,16 +25,15 @@ function setRatingColor(rating: number) {
   else if (rating > 6) return "#B88A1F";
   else return "#BC4838";
 }
+function getMovieName(name: string) {
+  const resName = name.substring(0, 14);
+  if (name.length > 14) return resName + "...";
+  else return resName;
+}
 
 interface Props {
   imageUrl: string;
   name: string;
   rating: number;
   type: string;
-}
-
-function getMovieName(name: string) {
-  const resName = name.substring(0, 14);
-  if (name.length > 14) return resName + "...";
-  else return resName;
 }
