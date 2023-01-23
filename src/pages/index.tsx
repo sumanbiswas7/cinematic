@@ -2,8 +2,19 @@ import Head from "next/head";
 import styles from "@/styles/Home.module.scss";
 import { NavBar } from "@/components/Navbar/NavBar";
 import { Movie } from "@/components/Movie/Movie";
+import { MainContent } from "@/layouts/MainContent";
+import { useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+  function handleLoading() {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }
+
+  handleLoading();
+
   return (
     <>
       <Head>
@@ -14,9 +25,7 @@ export default function Home() {
       </Head>
       <NavBar />
 
-      <main className={styles.main}>
-        <div className={styles.top_bar}></div>
-
+      <MainContent isLoading={loading}>
         <div className={styles.main_content}>
           <Movie
             name="Intestellar"
@@ -61,7 +70,7 @@ export default function Home() {
             imageUrl="https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_interstellar.jpg"
           />
         </div>
-      </main>
+      </MainContent>
     </>
   );
 }

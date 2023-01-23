@@ -34,6 +34,6 @@ export function NavBar() {
 }
 
 function getLinkClassName(match: string, route: string) {
-  if (route.includes(match)) return `${styles.link} ${styles.active}`;
+  if (route === match) return `${styles.link} ${styles.active}`;
   else return styles.link;
 }

@@ -1,0 +1,13 @@
+@import "../styles/constants.scss";
+
+.main {
+  margin-left: $navbar-width;
+  
+}
+
+.top_bar {
+  background-color: $accent;
+  height: 2.5rem;
+  top: 0;
+  position: sticky;
+}
