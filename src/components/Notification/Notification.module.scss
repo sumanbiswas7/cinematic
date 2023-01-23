@@ -1,0 +1,31 @@
+@import "../../styles/constants.scss";
+
+.container {
+  padding-top: 2rem;
+  // padding-left: 2rem;
+}
+
+.notifications_box {
+  color: $font-sub-1;
+  font-size: 0.75rem;
+  @include flex-center;
+  justify-content: flex-start;
+  padding-left: 2rem;
+
+  & > p {
+    font-weight: 500;
+    margin-right: 0.5rem;
+  }
+
+  & > div {
+    @include flex-center;
+    $size: 1.2rem;
+    width: $size;
+    height: $size;
+    font-size: 0.75rem;
+    border-radius: 50%;
+
+    color: #fff;
+    background-color: $accent;
+  }
+}
