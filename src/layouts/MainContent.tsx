@@ -14,9 +14,7 @@ export function MainContent({ children, isLoading, title }: Props) {
     <main className={styles.main}>
       <div className={styles.top_bar}></div>
       {!isLoading && <h2 className={styles.title}>{title}</h2>}
-      <div className={styles.main_content}>
-        {loading ? <CLoader /> : children}
-      </div>
+      {loading ? <CLoader /> : children}
     </main>
   );
 }

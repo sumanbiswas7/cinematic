@@ -1,8 +1,14 @@
+@import "../../styles/constants.scss";
+
 .grid_container {
+  padding-left: 1rem;
+  padding-block: 1rem;
   display: grid;
   grid-row-gap: 1rem;
-  grid-column-gap: 4rem;
 
-  // grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
-  grid-template-columns: repeat(auto-fill, minmax(25vh, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(27vh, 1fr));
+
+  @media only screen and (max-width: $breakpoint-mobile) {
+    grid-template-columns: repeat(auto-fill, minmax(31vw, 1fr));
+  }
 }

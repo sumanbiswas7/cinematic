@@ -3,6 +3,10 @@
 .main {
   margin-left: $navbar-width;
 
+  @media only screen and (max-width: $breakpoint-mobile) {
+    margin-left: 0;
+  }
+
   .title {
     color: #fff;
     font-weight: 200;
@@ -16,9 +20,4 @@
   top: 0;
   position: sticky;
   box-shadow: 0px 1px 77px -14px rgba(0, 0, 0, 1);
-}
-
-.main_content {
-  padding: 1rem;
-  padding-right: 0;
 }

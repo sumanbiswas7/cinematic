@@ -1,0 +1,61 @@
+@import "../../styles/constants.scss";
+
+.container {
+  @include flex-center;
+  gap: 0.5rem;
+  margin-block: 0.5rem;
+
+  img {
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+  }
+
+  & > div {
+    font-size: 0.8rem;
+    & > p:nth-child(1) {
+      color: $accent;
+      font-weight: 500;
+      & > span {
+        color: $font-sub-1;
+        font-weight: 400;
+      }
+    }
+    & > p:nth-child(2) {
+      color: $font-sub-1;
+    }
+    & > p:nth-child(3) {
+      font-weight: 500;
+      color: $accent;
+    }
+    & > p:nth-child(4) {
+      color: #393e47;
+      font-size: 0.7rem;
+    }
+  }
+}
+
+.btn_box {
+  @include flex-center;
+  gap: 0.5rem;
+
+  & > button {
+    $size: 1.3rem;
+    width: $size;
+    height: $size;
+    @include flex-center;
+    border: none;
+    border-radius: 50%;
+
+    & > img {
+      width: 0.7rem;
+    }
+  }
+
+  & > button:nth-child(1) {
+    background-color: $accent;
+  }
+  & > button:nth-child(2) {
+    background-color: $font-sub-1;
+  }
+}
