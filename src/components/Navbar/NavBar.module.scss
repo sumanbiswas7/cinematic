@@ -53,4 +53,14 @@
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+  animation: navlink-animation 0.4s;
+}
+
+@keyframes navlink-animation {
+  0% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
