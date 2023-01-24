@@ -2,7 +2,6 @@
 
 .main {
   margin-left: $navbar-width;
-
   @media only screen and (max-width: $breakpoint-mobile) {
     margin-left: 0;
   }
@@ -21,21 +20,20 @@
   position: sticky;
   box-shadow: 0px 1px 77px -14px rgba(0, 0, 0, 1);
   z-index: 99;
-  
-  & > img {
-    display: none;
-  }
 
   @media only screen and (max-width: $breakpoint-mobile) {
     padding-inline: 1rem;
     height: 3rem;
     @include flex-center;
     justify-content: space-between;
-
-    & > img {
-      // width: 8rem;
-      height: 50%;
-      display: block;
+    .link_cont {
+      .logo_img {
+        width: 6rem;
+        display: block;
+      }
     }
+  }
+  .logo_img {
+    display: none;
   }
 }

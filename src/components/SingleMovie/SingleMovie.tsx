@@ -28,17 +28,36 @@ export function SingleMovie() {
       </div>
 
       <div className={`${styles.right_card} ${styles.card}`}>
-        <h2>{movie.name}</h2>
-        <p className={styles.title}>DIRECTOR</p>
-        <p className={styles.text}>Cristopher Nolan</p>
-        <p className={styles.title}>CASTS</p>
-        <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
-        <p className={styles.title}>TYPE</p>
-        <Tags data={["Action", "Adventure"]} />
-        <p className={styles.title}>RELEASE YEAR</p>
-        <h2 className={styles.release_year}>2015</h2>
-        {/* <div className={styles.btm_box}></div> */}
+        <div className={styles.content}>
+          <h2>{movie.name}</h2>
+          <p className={styles.title}>DIRECTOR</p>
+          <p className={styles.text}>Cristopher Nolan</p>
+          <p className={styles.title}>CASTS</p>
+          <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
+          <p className={styles.title}>TYPE</p>
+          <Tags data={["Action", "Adventure"]} />
+          <p className={styles.title}>RELEASE YEAR</p>
+          <h2 className={styles.release_year}>2015</h2>
+        </div>
+        <div className={styles.btm_box}>
+          <Rating rating={movie.rating} />
+        </div>
       </div>
+    </div>
+  );
+}
+
+function Rating({ rating }: { rating: number }) {
+  return (
+    <div className={styles.rating_container}>
+      <div>
+        <div className={styles.rating_top_box}>
+          <img src="/movie/star.svg" />
+          <span>RATING</span>
+        </div>
+        <h2 className={styles.rating_num}>{rating}</h2>
+      </div>
+      {rating > 8.4 && <img src="/movie/mustwatch-stamp.png" />}
     </div>
   );
 }

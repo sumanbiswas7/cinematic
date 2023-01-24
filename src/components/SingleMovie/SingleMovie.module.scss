@@ -4,8 +4,9 @@
   display: flex;
   gap: 1rem;
   flex-wrap: wrap;
-  // background-color: yellow;
   justify-content: center;
+  margin-top: 10vh;
+  padding-bottom: 10vh;
 }
 
 $card-size: 20rem;
@@ -20,7 +21,6 @@ $card-size: 18rem;
 
 // LEFT CARD
 .left_card {
-  // display: none; //! check
   .movie_img {
     width: 100%;
     height: 80%;
@@ -59,26 +59,68 @@ $card-size: 18rem;
 // RIGHT CARD
 .right_card {
   background-color: #fff;
-  padding-top: 1.5rem;
-  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
-  & > h2 {
-    font-weight: 400;
-    color: $background-dark;
-    margin-bottom: 1rem;
+  .content {
+    padding-top: 1rem;
+    padding-left: 1.5rem;
+    & > h2 {
+      font-weight: 400;
+      color: $background-dark;
+      margin-bottom: 1rem;
+    }
+
+    .title {
+      margin-top: 0.8rem;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: $accent;
+    }
+    .text {
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+    .release_year {
+      font-size: 1.3rem;
+    }
   }
+}
 
-  .title {
-    margin-top: 0.8rem;
+.btm_box {
+  width: 100%;
+  height: 25%;
+  background-color: $accent;
+}
+
+.rating_container {
+  @include flex-center;
+  justify-content: space-between;
+  padding-inline: 1.5rem;
+
+  & > img {
+    width: 4rem;
+  }
+}
+.rating_top_box {
+  @include flex-center;
+  justify-content: flex-start;
+
+  & > img {
+    width: 0.6rem;
+  }
+  & > span {
+    margin-left: 0.2rem;
+    color: #fff;
+    font-size: 0.6rem;
     font-weight: 500;
-    font-size: 0.8rem;
-    color: $accent;
   }
-  .text {
-    font-weight: 400;
-    margin-bottom: 0.5rem;
-  }
-  .release_year {
-    font-size: 1.3rem;
-  }
+  margin-top: 1rem;
+}
+.rating_num {
+  margin-top: -0.3rem;
+  font-weight: 300;
+  font-size: 3rem;
+  color: #fff;
 }

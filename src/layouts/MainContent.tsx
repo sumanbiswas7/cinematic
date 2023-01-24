@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./MainContent.module.scss";
 import { Loader as CLoader } from "../components/Loader/Loader";
+import Link from "next/link";
 
 export function MainContent({ children, isLoading, title }: Props) {
   const [loading, setLoading] = useState(true);
@@ -13,7 +14,9 @@ export function MainContent({ children, isLoading, title }: Props) {
   return (
     <main className={styles.main}>
       <div className={styles.top_bar}>
-        <img src="/logo.svg" />
+        <Link href="/" className={styles.link_cont}>
+          <img src="/logo.svg" className={styles.logo_img} />
+        </Link>
       </div>
       {!isLoading && <h2 className={styles.title}>{title}</h2>}
       {loading ? <CLoader /> : children}

@@ -9,7 +9,9 @@ export function NavBar() {
   return (
     <nav className={styles.container}>
       <div className={styles.logo_container}>
-        <img src="/logo.svg" />
+        <Link href="/" className={styles.link_cont}>
+          <img src="/logo.svg" />
+        </Link>
       </div>
 
       <ul>

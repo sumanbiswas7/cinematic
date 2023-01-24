@@ -4,6 +4,7 @@
   @include flex-center;
   gap: 0.5rem;
   margin-block: 0.5rem;
+  height: 3.5rem;
 
   img {
     border-radius: 50%;
@@ -38,9 +39,14 @@
     @include flex-center;
     border: none;
     border-radius: 50%;
+    cursor: pointer;
 
     & > img {
       width: 0.7rem;
+    }
+
+    &:hover {
+      outline: 1px solid #fff;
     }
   }
 

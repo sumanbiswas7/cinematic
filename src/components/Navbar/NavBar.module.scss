@@ -21,11 +21,13 @@
 
 .logo_container {
   background-color: $accent-dark;
-  @include flex-center;
   height: 2.5rem;
-
-  & > img {
-    width: 40%;
+  .link_cont {
+    @include flex-center;
+    height: 100%;
+    & > img {
+      width: 40%;
+    }
   }
 
   margin-bottom: 2.5rem;
