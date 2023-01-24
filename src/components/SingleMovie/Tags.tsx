@@ -4,7 +4,11 @@ export function Tags({ data }: Props) {
   return (
     <div className={styles.container}>
       {data.map((t) => {
-        return <div className={styles.tag_container}>{t}</div>;
+        return (
+          <div key={t} className={styles.tag_container}>
+            {t}
+          </div>
+        );
       })}
     </div>
   );
