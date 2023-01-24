@@ -1,4 +1,7 @@
 import styles from "./SingleMovie.module.scss";
+import { RatingBox } from "./RatingBox";
+import { Tags } from "./Tags";
+
 const movie = {
   id: 8,
   name: "Inception",
@@ -13,29 +16,29 @@ const movie = {
 export function SingleMovie() {
   return (
     <div className={styles.container}>
-      <div className={styles.left_box}>
+      <div className={`${styles.left_card} ${styles.card}`}>
         <img src={movie.image} className={styles.movie_img} />
-        <img src="/movie/btm-shape.svg" className={styles.btm_shape} />
-        <div className={styles.textcontent}>
-          <RatingBox rating={movie.rating} />
-          <h2>{movie.name}</h2>
-          <p>{movie.description}</p>
+        <div className={styles.btm_shape}>
+          <div className={styles.textcontent}>
+            <RatingBox rating={movie.rating} />
+            <h2>{movie.name}</h2>
+            <p>{movie.description}</p>
+          </div>
         </div>
       </div>
-      <div className={styles.right_box}></div>
-    </div>
-  );
-}
 
-export function RatingBox({ rating }: { rating: number }) {
-  const ratingNum = parseFloat(rating.toString()).toFixed(1);
-
-  return (
-    <div className={styles.rating_box}>
-      <div className={styles.box_1}>
-        <img src="/movie/movie-icon.svg" />
+      <div className={`${styles.right_card} ${styles.card}`}>
+        <h2>{movie.name}</h2>
+        <p className={styles.title}>DIRECTOR</p>
+        <p className={styles.text}>Cristopher Nolan</p>
+        <p className={styles.title}>CASTS</p>
+        <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
+        <p className={styles.title}>TYPE</p>
+        <Tags data={["Action", "Adventure"]} />
+        <p className={styles.title}>RELEASE YEAR</p>
+        <h2 className={styles.release_year}>2015</h2>
+        {/* <div className={styles.btm_box}></div> */}
       </div>
-      <div className={styles.box_2}>{movie.rating}</div>
     </div>
   );
 }

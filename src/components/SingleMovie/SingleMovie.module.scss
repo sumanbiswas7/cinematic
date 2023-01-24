@@ -3,88 +3,82 @@
 .container {
   display: flex;
   gap: 1rem;
-  //   justify-content: center;
+  flex-wrap: wrap;
+  // background-color: yellow;
+  justify-content: center;
 }
-$size: 70vmin;
-.left_box {
-  height: $size;
-  width: $size * 0.65;
-  //   background-color: rebeccapurple;
-  background-color: #fff;
-  position: relative;
-  overflow: hidden;
 
+$card-size: 20rem;
+$card-size: 18rem;
+
+.card {
+  width: $card-size;
+  height: $card-size * 1.4;
+  background-color: red;
+  position: relative;
+}
+
+// LEFT CARD
+.left_card {
+  // display: none; //! check
   .movie_img {
-    position: absolute;
     width: 100%;
-    height: 70%;
+    height: 80%;
     object-fit: cover;
-    object-position: bottom;
     object-position: center;
   }
 
   .btm_shape {
     width: 100%;
+    height: 50%;
     position: absolute;
     bottom: 0;
-    transform: translateY(1rem);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0) 0%,
+      #ffffff 30%,
+      #ffffff 100%
+    );
   }
 
   .textcontent {
-    color: #000;
-    position: absolute;
     text-align: center;
-    bottom: 10%;
-    width: 100%;
-
+    padding-inline: 0.5rem;
     & > h2 {
-      margin-bottom: 0.5rem;
-      color: $background-dark;
       font-weight: 400;
+      margin-bottom: 0.65rem;
+      color: $background-dark;
     }
-
     & > p {
-      font-size: 0.6rem;
-      padding-inline: 0.5rem;
-      color: #555555;
+      color: $font-sub-1;
+      font-size: 0.7rem;
     }
   }
 }
-.right_box {
-  height: $size;
-  width: $size * 0.7;
+
+// RIGHT CARD
+.right_card {
   background-color: #fff;
-}
+  padding-top: 1.5rem;
+  padding-left: 1.5rem;
 
-// Rating Box
-.rating_box {
-  display: flex;
-  justify-content: center;
-  transform: translateY(-1rem);
-
-  //   $size: 4.5rem;
-  $size: 12vmin;
-
-  & > div {
-    @include flex-center;
-    border-radius: 2%;
-    box-shadow: 0px 5px 30px 20px rgba(0, 0, 0, 0.25);
+  & > h2 {
+    font-weight: 400;
+    color: $background-dark;
+    margin-bottom: 1rem;
   }
 
-  & > .box_1 {
-    width: $size * 1.1;
-    height: $size * 1.1;
-    background-color: $background-dark;
-    transform: translate(1rem, -1rem);
-    & > img {
-      width: 30%;
-    }
+  .title {
+    margin-top: 0.8rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: $accent;
   }
-  & > .box_2 {
-    width: $size;
-    height: $size;
-    font-size: 1.4rem;
-    padding-left: 0.2rem;
-    background-color: #fff;
+  .text {
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+  }
+  .release_year {
+    font-size: 1.3rem;
   }
 }

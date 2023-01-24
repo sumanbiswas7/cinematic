@@ -1,0 +1,18 @@
+@import "../../styles/constants.scss";
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag_container {
+  background-color: $background;
+  margin-right: 0.2rem;
+  margin-top: 0.2rem;
+  
+  padding: 0.3rem 0.5rem;
+  border-radius: 0.3rem;
+
+  font-size: 0.7rem;
+  color: #fff;
+}
