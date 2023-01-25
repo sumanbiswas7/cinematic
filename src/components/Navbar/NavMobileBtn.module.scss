@@ -54,3 +54,24 @@
     }
   }
 }
+
+.modal_user {
+  height: 20rem;
+  width: 15rem;
+  position: fixed;
+  background-color: $background-dark;
+  top: $navbar_mobile-height;
+  right: 0;
+  box-shadow: 2px 2px 60px 1px rgba(0, 0, 0, 0.5);
+  border-bottom-left-radius: 2px;
+  animation: modal-animation 0.3s;
+}
+
+@keyframes modal-animation {
+  0% {
+    transform: translateX(15rem);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

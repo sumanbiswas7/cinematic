@@ -18,7 +18,7 @@ export function NavMobileBtn() {
         <div id={userModal ? styles.active_line_2 : styles.line_2}></div>
         <div id={userModal ? styles.active_line_3 : styles.line_3}></div>
       </button>
-      {/* <div></div> */}
+      {userModal && <div className={styles.modal_user}></div>}
     </div>
   );
 }
