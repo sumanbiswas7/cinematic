@@ -1,0 +1,30 @@
+@import "../../styles/constants.scss";
+
+.container {
+  @include flex-center;
+  flex-wrap: wrap;
+  $gap: 1rem;
+  gap: $gap;
+}
+
+.btn_container {
+  @include flex-center;
+  $size: 5.8rem;
+
+  width: $size;
+  height: $size * 0.45;
+  background-color: $accent;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  
+  &:hover {
+    background-color: $accent-dark;
+  }
+}
+
+.text {
+  margin-left: 0.3rem;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 300;
+}

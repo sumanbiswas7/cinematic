@@ -1,0 +1,18 @@
+@import "../../styles/constants.scss";
+
+.link_container {
+  text-decoration: none;
+}
+
+.link {
+  margin-bottom: 0.75rem;
+  color: $font-sub-1;
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateX(0.5rem);
+    color: $accent;
+  }
+}

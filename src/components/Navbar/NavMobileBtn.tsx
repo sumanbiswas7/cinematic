@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
+import { ModalLink } from "./ModalLink";
 import styles from "./NavMobileBtn.module.scss";
+import { User } from "./User";
+import { UserBtnBox } from "./UserBtnBox";
 
 export function NavMobileBtn() {
   const [userModal, setUserModal] = useState(false);
@@ -18,7 +21,22 @@ export function NavMobileBtn() {
         <div id={userModal ? styles.active_line_2 : styles.line_2}></div>
         <div id={userModal ? styles.active_line_3 : styles.line_3}></div>
       </button>
-      {userModal && <div className={styles.modal_user}></div>}
+      {userModal && (
+        <div className={styles.modal_user}>
+          <div className={styles.top_container}>
+            <User />
+          </div>
+          <div className={styles.mid_container}>
+            <ModalLink href="/" text="Recently Added" />
+            <ModalLink href="/suggestions" text="Suggestions" />
+            <ModalLink href="/favourites" text="Favourites" />
+            <ModalLink href="/watchlater" text="Watch Later" />
+          </div>
+          <div className={styles.bottom_container}>
+            <UserBtnBox />
+          </div>
+        </div>
+      )}
     </div>
   );
 }
