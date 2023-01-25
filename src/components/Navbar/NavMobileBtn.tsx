@@ -1,9 +1,9 @@
+import Link from "next/link";
 import { useState } from "react";
 import { FriendRequest } from "../Notification/FriendRequest";
 import { Suggestion } from "../Notification/Suggestion";
 import { ModalLink } from "./ModalLink";
 import styles from "./NavMobileBtn.module.scss";
-import { User } from "./User";
 import { UserBtnBox } from "./UserBtnBox";
 
 export function NavMobileBtn() {
@@ -70,5 +70,16 @@ export function NavMobileBtn() {
         </div>
       )}
     </div>
+  );
+}
+
+export function User() {
+  return (
+    <Link href={"/"}>
+      <img
+        className={styles.userimg}
+        src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Leo&scale=80"
+      />
+    </Link>
   );
 }

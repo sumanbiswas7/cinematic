@@ -19,6 +19,7 @@ export function MainContent({ children, isLoading, title }: Props) {
           <img src="/logo.svg" className={styles.logo_img} />
         </Link>
         <NavMobileBtn />
+        <UserImg />
       </div>
       {!isLoading && <h2 className={styles.title}>{title}</h2>}
       {loading ? <CLoader /> : children}
@@ -30,4 +31,15 @@ interface Props {
   children: React.ReactNode;
   isLoading?: boolean;
   title?: string;
+}
+
+function UserImg() {
+  return (
+    <Link href={"/"}>
+      <img
+        className={styles.userimg}
+        src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Leo&scale=80"
+      />
+    </Link>
+  );
 }

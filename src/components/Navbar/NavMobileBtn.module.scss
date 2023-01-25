@@ -3,6 +3,7 @@
 .container {
   @include flex-center;
   gap: 0.5rem;
+  margin-left: auto;
 
   @media only screen and (width > $breakpoint-mobile) {
     display: none;
@@ -117,4 +118,11 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+}
+
+.userimg {
+  $size: 2rem;
+  width: $size;
+  height: $size;
+  border-radius: 50%;
 }
