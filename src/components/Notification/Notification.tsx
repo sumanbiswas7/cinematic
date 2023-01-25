@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { FriendRequest } from "./FriendRequest";
 import styles from "./Notification.module.scss";
 import { Suggestion } from "./Suggestion";

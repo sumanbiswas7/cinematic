@@ -1,5 +1,4 @@
 import moment from "moment";
-import { useState, useEffect } from "react";
 import styles from "./Suggestion.module.scss";
 
 export function Suggestion({ image, name, time, movie }: Props) {

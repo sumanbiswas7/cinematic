@@ -1,11 +1,11 @@
 import Head from "next/head";
-import styles from "@/styles/Home.module.scss";
 import { NavBar } from "@/components/Navbar/NavBar";
 import { Movie } from "@/components/Movie/Movie";
 import { MainContent } from "@/layouts/MainContent";
 import { useState } from "react";
 import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
 import movies from "../../data/movies.json";
+import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
   const [loading, setLoading] = useState(true);

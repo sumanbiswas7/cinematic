@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { ModalLink } from "./ModalLink";
 import styles from "./NavMobileBtn.module.scss";
 import { User } from "./User";
