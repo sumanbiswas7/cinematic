@@ -1,0 +1,56 @@
+@import "../../styles/constants.scss";
+
+.container {
+  @include flex-center;
+  gap: 0.5rem;
+
+  @media only screen and (width > $breakpoint-mobile) {
+    display: none;
+  }
+
+  & > button {
+    @include flex-center;
+    flex-direction: column;
+    $size: 1.85rem;
+    width: $size;
+    height: $size;
+    border: none;
+  }
+
+  .not_btn {
+    border-radius: 50%;
+    .bell_icon {
+      width: 1rem;
+    }
+  }
+
+  .threedot_btn {
+    border-radius: 0.4rem;
+    & > div {
+      width: 70%;
+      height: 2px;
+      background-color: black;
+    }
+
+    #line_2 {
+      margin-block: 4px;
+    }
+    #line_1,
+    #line_2,
+    #line_3 {
+      transition: all 0.2s;
+    }
+
+    #active_line_2 {
+      opacity: 0;
+    }
+    #active_line_1 {
+      transform: translateY(2px) rotate(45deg);
+      transition: all 0.2s;
+    }
+    #active_line_3 {
+      transform: translateY(-2px) rotate(-45deg);
+      transition: all 0.2s;
+    }
+  }
+}
