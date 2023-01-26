@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./Movie.module.scss";
 
 export function Movie({ imageUrl, name, type, rating }: Props) {
@@ -7,7 +8,9 @@ export function Movie({ imageUrl, name, type, rating }: Props) {
 
   return (
     <div className={styles.container}>
-      <img src={imageUrl} />
+      <Link href={"/movies/1"}>
+        <img className={styles.movieimg} src={imageUrl} />
+      </Link>
 
       <div className={styles.bottom_container}>
         <div>

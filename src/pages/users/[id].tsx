@@ -1,5 +1,6 @@
 import styles from "./Users.module.scss";
 import movies from "../../../data/movies.json";
+import Link from "next/link";
 
 export default function UserById() {
   return (
@@ -36,19 +37,21 @@ function Movie({ image, name, rating, type }: MovieProps) {
   const ratingColor = setRatingColor(rating);
 
   return (
-    <div className={styles.movie_container}>
-      <img src={image} className={styles.movieimg} />
-      <div className={styles.content_container}>
-        <h2>{name}</h2>
-        <p>{type}</p>
-        <span
-          className={styles.rating_box}
-          style={{ backgroundColor: ratingColor }}
-        >
-          {ratingNum}
-        </span>
+    <Link className={styles.link_container} href={"/movies/1"}>
+      <div className={styles.movie_container}>
+        <img src={image} className={styles.movieimg} />
+        <div className={styles.content_container}>
+          <h2>{name}</h2>
+          <p>{type}</p>
+          <span
+            className={styles.rating_box}
+            style={{ backgroundColor: ratingColor }}
+          >
+            {ratingNum}
+          </span>
+        </div>
       </div>
-    </div>
+    </Link>
   );
 }
 

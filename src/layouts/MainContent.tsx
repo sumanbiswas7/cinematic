@@ -35,7 +35,7 @@ interface Props {
 
 function UserImg() {
   return (
-    <Link href={"/"}>
+    <Link href={"/users/1"}>
       <img
         className={styles.userimg}
         src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Leo&scale=80"

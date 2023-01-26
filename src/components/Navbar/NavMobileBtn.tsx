@@ -75,11 +75,15 @@ export function NavMobileBtn() {
 
 export function User() {
   return (
-    <Link href={"/"}>
+    <Link href={"/users/1"}>
       <img
         className={styles.userimg}
         src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Leo&scale=80"
       />
     </Link>
   );
+}
+interface UserProps {
+  id: string;
+  image: string;
 }
