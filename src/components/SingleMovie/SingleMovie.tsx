@@ -2,45 +2,41 @@ import styles from "./SingleMovie.module.scss";
 import { RatingBox } from "./RatingBox";
 import { Tags } from "./Tags";
 
-const movie = {
-  id: 8,
-  name: "Inception",
-  rating: 8.5,
-  type: "Science Fiction",
-  image:
-    "https://movizine-imageupload.s3.ap-south-1.amazonaws.com/poster_inception.jpg",
-  description:
-    "When Earth becomes uninhabitable in the future, a farmer and ex-NASA pilot, Joseph Cooper, is tasked to pilot a spacecraft, along with a team of researchers, to find a new planet for humans.",
-};
-
-export function SingleMovie() {
+export function SingleMovie({
+  director,
+  release,
+  rating,
+  name,
+  description,
+  image,
+}: SingleMovieProps) {
   return (
     <div className={styles.container}>
       <div className={`${styles.left_card} ${styles.card}`}>
-        <img src={movie.image} className={styles.movie_img} />
+        <img src={image} className={styles.movie_img} />
         <div className={styles.btm_shape}>
           <div className={styles.textcontent}>
-            <RatingBox rating={movie.rating} />
-            <h2>{movie.name}</h2>
-            <p>{movie.description}</p>
+            <RatingBox rating={rating} />
+            <h2>{name}</h2>
+            <p>{description}</p>
           </div>
         </div>
       </div>
 
       <div className={`${styles.right_card} ${styles.card}`}>
         <div className={styles.content}>
-          <h2>{movie.name}</h2>
+          <h2>{name}</h2>
           <p className={styles.title}>DIRECTOR</p>
-          <p className={styles.text}>Cristopher Nolan</p>
+          <p className={styles.text}>{director}</p>
           <p className={styles.title}>CASTS</p>
           <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
           <p className={styles.title}>TYPE</p>
           <Tags data={["Action", "Adventure"]} />
           <p className={styles.title}>RELEASE YEAR</p>
-          <h2 className={styles.release_year}>2015</h2>
+          <h2 className={styles.release_year}>{release}</h2>
         </div>
         <div className={styles.btm_box}>
-          <Rating rating={movie.rating} />
+          <Rating rating={rating} />
         </div>
       </div>
     </div>
@@ -48,6 +44,8 @@ export function SingleMovie() {
 }
 
 function Rating({ rating }: { rating: number }) {
+  const ratingNum = parseFloat(rating.toString()).toFixed(1);
+
   return (
     <div className={styles.rating_container}>
       <div>
@@ -55,9 +53,20 @@ function Rating({ rating }: { rating: number }) {
           <img src="/movie/star.svg" />
           <span>RATING</span>
         </div>
-        <h2 className={styles.rating_num}>{rating}</h2>
+        <h2 className={styles.rating_num}>{ratingNum}</h2>
       </div>
       {rating > 8.4 && <img src="/movie/mustwatch-stamp.png" />}
     </div>
   );
+}
+
+interface SingleMovieProps {
+  id: number;
+  name: string;
+  rating: number;
+  type: string;
+  image: string;
+  description: string;
+  release: string;
+  director: string;
 }

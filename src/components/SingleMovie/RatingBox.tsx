@@ -20,7 +20,7 @@ export function RatingBox({ rating }: { rating: number }) {
         <img src="/movie/movie-icon.svg" />
       </div>
       <div className={`${styles.box_2} ${styles.box}`}>
-        <span>{movie.rating}</span>
+        <span>{ratingNum}</span>
       </div>
     </div>
   );

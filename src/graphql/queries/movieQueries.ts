@@ -11,3 +11,18 @@ query ($limit: Int!) {
   }
 }
 `
+
+export const GET_MOVIE = gql`
+query ($movieId: Int!) {
+  get_movie(movieId: $movieId) {
+    id
+    name
+    type
+    image
+    rating
+    release
+    description
+    director
+  }
+}
+`

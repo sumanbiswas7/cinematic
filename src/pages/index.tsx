@@ -2,16 +2,14 @@ import Head from "next/head";
 import { NavBar } from "@/components/Navbar/NavBar";
 import { Movie } from "@/components/Movie/Movie";
 import { MainContent } from "@/layouts/MainContent";
-import { useState } from "react";
 import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
-// import movies from "../../data/movies.json";
-import styles from "@/styles/Home.module.scss";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES } from "@/graphql/queries/movieQueries";
+import styles from "@/styles/Home.module.scss";
+import { useState } from "react";
+// import movies from "../../data/movies.json";
 
 export default function Home() {
-  function handleLoading() {}
-
   const { loading, error, data } = useQuery(GET_MOVIES, {
     variables: { limit: 12 },
   });
@@ -33,6 +31,7 @@ export default function Home() {
           {data?.get_movies.map((movie: any) => {
             return (
               <Movie
+                id={movie.id}
                 key={movie.id}
                 name={movie.name}
                 rating={movie.rating}

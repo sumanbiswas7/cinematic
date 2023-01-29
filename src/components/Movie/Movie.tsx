@@ -1,14 +1,14 @@
 import Link from "next/link";
 import styles from "./Movie.module.scss";
 
-export function Movie({ imageUrl, name, type, rating }: Props) {
+export function Movie({ imageUrl, name, type, rating, id }: Props) {
   const ratingNum = parseFloat(rating.toString()).toFixed(1);
   const ratingColor = setRatingColor(rating);
   const movieName = getMovieName(name);
 
   return (
     <div className={styles.container}>
-      <Link href={"/movies/1"}>
+      <Link href={`/movies/${id}`}>
         <img className={styles.movieimg} src={imageUrl} />
       </Link>
 
@@ -35,6 +35,7 @@ function getMovieName(name: string) {
 }
 
 interface Props {
+  id: number;
   imageUrl: string;
   name: string;
   rating: number;
