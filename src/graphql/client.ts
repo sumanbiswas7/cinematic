@@ -4,7 +4,7 @@ import {
 } from "@apollo/client";
 
 export const client = new ApolloClient({
-    uri: "https://flyby-gateway.herokuapp.com/",
+    uri: process.env.NEXT_PUBLIC_SERVER_URL,
     cache: new InMemoryCache(),
 });
 

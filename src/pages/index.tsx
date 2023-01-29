@@ -4,19 +4,19 @@ import { Movie } from "@/components/Movie/Movie";
 import { MainContent } from "@/layouts/MainContent";
 import { useState } from "react";
 import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
-import movies from "../../data/movies.json";
+// import movies from "../../data/movies.json";
 import styles from "@/styles/Home.module.scss";
+import { useQuery } from "@apollo/client";
+import { GET_MOVIES } from "@/graphql/queries/movieQueries";
 
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  function handleLoading() {}
 
-  function handleLoading() {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
-  }
+  const { loading, error, data } = useQuery(GET_MOVIES, {
+    variables: { limit: 12 },
+  });
 
-  handleLoading();
+  if (error) return <p>Error : {error.message}</p>;
 
   return (
     <>
@@ -30,7 +30,7 @@ export default function Home() {
 
       <MainContent title="Recent Movies" isLoading={loading}>
         <MovieGrid>
-          {movies.map((movie) => {
+          {data?.get_movies.map((movie: any) => {
             return (
               <Movie
                 key={movie.id}
