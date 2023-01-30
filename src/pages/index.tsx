@@ -18,11 +18,11 @@ export default function Home() {
   const movieRes = useQuery(GET_MOVIES, { variables: { limit: 12 } });
   const userctx = useContext(userContext);
 
-  if (movieRes.error) return <p>Error : {movieRes.error.message}</p>;
-
   useEffect(() => {
     handleGetAuthUser();
   }, []);
+
+  if (movieRes.error) return <p>Error : {movieRes.error.message}</p>;
 
   function handleGetAuthUser() {
     const auth = getAuth(app);

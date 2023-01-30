@@ -6,7 +6,7 @@ import { useQuery } from "@apollo/client";
 import { useRouter } from "next/router";
 import styles from "./movieById.module.scss";
 
-export default function movieById() {
+export default function MovieById() {
   const router = useRouter();
   const { id } = router.query;
   const movieId = parseInt(id as string);
