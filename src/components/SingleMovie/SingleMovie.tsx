@@ -9,7 +9,12 @@ export function SingleMovie({
   name,
   description,
   image,
+  type,
+  casts,
 }: SingleMovieProps) {
+  const CASTS = "Leonardo Dicaprio,Jamie Fox";
+  const CASTS_C = CASTS.split(",");
+
   return (
     <div className={styles.container}>
       <div className={`${styles.left_card} ${styles.card}`}>
@@ -31,7 +36,7 @@ export function SingleMovie({
           <p className={styles.title}>CASTS</p>
           <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
           <p className={styles.title}>TYPE</p>
-          <Tags data={["Action", "Adventure"]} />
+          <Tags data={[type]} />
           <p className={styles.title}>RELEASE YEAR</p>
           <h2 className={styles.release_year}>{release}</h2>
         </div>
@@ -69,4 +74,5 @@ interface SingleMovieProps {
   description: string;
   release: string;
   director: string;
+  casts: string;
 }

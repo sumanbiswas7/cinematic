@@ -35,6 +35,7 @@ export default function movieById() {
             release={movie.release}
             type={movie.type}
             key={movie.id}
+            casts={movie.casts}
           />
         </div>
       </MainContent>
@@ -51,4 +52,5 @@ interface Movie {
   description: string;
   release: string;
   director: string;
+  casts: string;
 }

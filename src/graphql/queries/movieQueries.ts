@@ -23,6 +23,7 @@ query ($movieId: Int!) {
     release
     description
     director
+    casts
   }
 }
 `

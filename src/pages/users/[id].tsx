@@ -1,5 +1,5 @@
 import styles from "./Users.module.scss";
-import movies from "../../../data/movies.json";
+// import movies from "../../../data/movies.json";
 import Link from "next/link";
 import { useContext } from "react";
 import { userContext } from "../_app";
