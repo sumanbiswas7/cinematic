@@ -24,3 +24,27 @@ query ($userId: Int!) {
   }
 }
 `
+export const GET_AUTH_USER = gql`
+query ($email: String!) {
+  get_authuser(email: $email) {
+    id
+    name
+    email
+    country
+    createdAt
+    notifications {
+      id
+      from
+      request
+      suggestion
+    }
+    movies {
+      id
+      name
+      image
+      type
+      rating
+    }
+  }
+}
+`
