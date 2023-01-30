@@ -5,11 +5,10 @@ import { MainContent } from "@/layouts/MainContent";
 import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES } from "@/graphql/queries/movieQueries";
-import styles from "@/styles/Home.module.scss";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { GET_USER } from "@/graphql/queries/userQueries";
 import { userContext } from "./_app";
-// import movies from "../../data/movies.json";
+import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
   const userRes = useQuery(GET_USER, { variables: { userId: 2 } });

@@ -21,8 +21,6 @@ export default function UserById() {
   if (!isuserexists) user = userRes.data?.get_user;
   const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
 
-  console.log(user);
-
   return (
     <div className={styles.container}>
       <div className={styles.user_container}>
