@@ -26,9 +26,11 @@ export default function Home() {
 
   function handleGetAuthUser() {
     const auth = getAuth(app);
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         const setUser = userctx?.setUser!;
+
         if (firstRun) {
           getAuthUser({
             variables: { email: user.email },

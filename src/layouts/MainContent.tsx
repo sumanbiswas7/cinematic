@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styles from "./MainContent.module.scss";
 import { Loader as CLoader } from "../components/Loader/Loader";
 import Link from "next/link";
 import { NavMobileBtn } from "@/components/Navbar/NavMobileBtn";
+import { userContext } from "@/pages/_app";
 
 export function MainContent({ children, isLoading, title }: Props) {
   const [loading, setLoading] = useState(true);
@@ -34,12 +35,15 @@ interface Props {
 }
 
 function UserImg() {
+  const userctx = useContext(userContext);
+  const user = userctx?.user;
+  const url = user?.name
+    ? `https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${user.name}&scale=80`
+    : "/navbar/blank_profile.jpg";
+
   return (
-    <Link href={"/users/1"}>
-      <img
-        className={styles.userimg}
-        src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Leo&scale=80"
-      />
+    <Link href={"/profile"}>
+      <img className={styles.userimg} src={url} />
     </Link>
   );
 }
