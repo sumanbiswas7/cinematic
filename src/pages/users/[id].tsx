@@ -1,22 +1,44 @@
 import styles from "./Users.module.scss";
 import movies from "../../../data/movies.json";
 import Link from "next/link";
+import { useContext } from "react";
+import { userContext } from "../_app";
+import moment from "moment";
+import { GET_USER } from "@/graphql/queries/userQueries";
+import { useQuery } from "@apollo/client";
 
 export default function UserById() {
+  const userctx = useContext(userContext);
+  let user = userctx?.user;
+  const isuserexists = user ? true : false;
+
+  const userRes = useQuery(GET_USER, {
+    variables: { userId: 2 },
+    skip: isuserexists,
+  });
+
+  if (userRes.loading) return <h1>Loading</h1>;
+  if (!isuserexists) user = userRes.data?.get_user;
+  const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
+
+  console.log(user);
+
   return (
     <div className={styles.container}>
       <div className={styles.user_container}>
         <img
           className={styles.userimg}
-          src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=unknown&scale=80"
+          src={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${user?.name}&scale=80`}
         />
-        <h2 className={styles.name}>Jake Wilson</h2>
-        <p className={styles.country}>Country: India</p>
-        <p className={styles.joined}>Joined 2 days ago</p>
+        <h2 className={styles.name}>{user?.name}</h2>
+        {user?.country && (
+          <p className={styles.country}>Country: {user.country}</p>
+        )}
+        <p className={styles.joined}>Joined {joined}</p>
       </div>
-      <p className={styles.movies_count}>Movies: 2</p>
+      <p className={styles.movies_count}>Movies: {user?.movies.length}</p>
       <div className={styles.movies_container}>
-        {movies.map((movie) => {
+        {user?.movies.map((movie) => {
           return (
             <Movie
               key={movie.id}

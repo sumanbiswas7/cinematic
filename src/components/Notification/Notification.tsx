@@ -1,8 +1,12 @@
+import { userContext } from "@/pages/_app";
+import { useContext } from "react";
 import { FriendRequest } from "./FriendRequest";
 import styles from "./Notification.module.scss";
 import { Suggestion } from "./Suggestion";
 
 export function Notification() {
+  // const [user] = useContext(userContext);
+
   return (
     <div className={styles.container}>
       <div className={styles.notifications_box}>

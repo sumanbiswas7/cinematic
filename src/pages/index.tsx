@@ -6,15 +6,25 @@ import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES } from "@/graphql/queries/movieQueries";
 import styles from "@/styles/Home.module.scss";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { GET_USER } from "@/graphql/queries/userQueries";
+import { userContext } from "./_app";
 // import movies from "../../data/movies.json";
 
 export default function Home() {
-  const { loading, error, data } = useQuery(GET_MOVIES, {
-    variables: { limit: 12 },
-  });
+  const userRes = useQuery(GET_USER, { variables: { userId: 2 } });
+  const movieRes = useQuery(GET_MOVIES, { variables: { limit: 12 } });
+  const userctx = useContext(userContext);
 
-  if (error) return <p>Error : {error.message}</p>;
+  if (movieRes.error) return <p>Error : {movieRes.error.message}</p>;
+
+  useEffect(() => {
+    const resuser = userRes.data?.get_user;
+    if (resuser) {
+      const setUser = userctx?.setUser;
+      if (setUser) setUser(resuser);
+    }
+  }, [userRes]);
 
   return (
     <>
@@ -26,9 +36,12 @@ export default function Home() {
       </Head>
       <NavBar />
 
-      <MainContent title="Recent Movies" isLoading={loading}>
+      <MainContent
+        title="Recent Movies"
+        isLoading={movieRes.loading && userRes.loading}
+      >
         <MovieGrid>
-          {data?.get_movies.map((movie: any) => {
+          {movieRes?.data?.get_movies.map((movie: any) => {
             return (
               <Movie
                 id={movie.id}
