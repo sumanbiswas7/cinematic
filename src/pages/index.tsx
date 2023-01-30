@@ -8,6 +8,8 @@ import { GET_MOVIES } from "@/graphql/queries/movieQueries";
 import { useContext, useEffect } from "react";
 import { GET_USER } from "@/graphql/queries/userQueries";
 import { userContext } from "./_app";
+import { app } from "@/firebase/firebaseConfig";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import styles from "@/styles/Home.module.scss";
 
 export default function Home() {
@@ -23,6 +25,14 @@ export default function Home() {
       const setUser = userctx?.setUser;
       if (setUser) setUser(resuser);
     }
+
+    const auth = getAuth(app);
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log(user.email);
+      } else {
+      }
+    });
   }, [userRes]);
 
   return (
