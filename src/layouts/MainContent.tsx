@@ -9,6 +9,7 @@ import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { useLazyQuery } from "@apollo/client";
 import { GET_AUTH_USER } from "@/graphql/queries/userQueries";
 import { avatarStyle } from "@/constants/diceBearStyle";
+import { TopNavBar } from "@/components/TopNavBar/TopNavBar";
 
 export function MainContent({ children, isLoading, title }: Props) {
   const [loading, setLoading] = useState(true);
@@ -42,13 +43,7 @@ export function MainContent({ children, isLoading, title }: Props) {
 
   return (
     <main className={styles.main}>
-      <div className={styles.top_bar}>
-        <Link href="/" className={styles.link_cont}>
-          <img src="/logo.svg" className={styles.logo_img} />
-        </Link>
-        <NavMobileBtn />
-        <UserImg />
-      </div>
+      <TopNavBar />
       {!isLoading && <h2 className={styles.title}>{title}</h2>}
       {loading ? <CLoader /> : children}
     </main>
@@ -59,18 +54,4 @@ interface Props {
   children: React.ReactNode;
   isLoading?: boolean;
   title?: string;
-}
-
-function UserImg() {
-  const userctx = useContext(userContext);
-  const user = userctx?.user;
-  const url = user?.name
-    ? `https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${user.name}&scale=80`
-    : "/navbar/blank_profile.jpg";
-
-  return (
-    <Link href={"/profile"}>
-      <img className={styles.userimg} src={url} />
-    </Link>
-  );
 }

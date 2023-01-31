@@ -18,7 +18,7 @@ export function Notification() {
         <div>{notifications.length}</div>
       </div>
       <div className={styles.notifications}>
-        {NOTIFICATIONS.map((n) => {
+        {notifications.map((n) => {
           return <NotificationContent key={n.id} notification={n} />;
         })}
       </div>
