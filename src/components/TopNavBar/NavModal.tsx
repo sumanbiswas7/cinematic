@@ -64,7 +64,11 @@ function ReportIssue() {
         <AiFillInfoCircle size={20} fill="#B9B9B9" />
       </div>
       <div className={styles.contentbox}>
-        <a href="https://github.com/sumanbiswas7/cinematic" target="_blank">
+        <a
+          href="https://github.com/sumanbiswas7/cinematic"
+          rel="noreferrer"
+          target="_blank"
+        >
           Report an issue
         </a>
         <p>Help us improve Cinematic by reporting issues and bugs</p>
