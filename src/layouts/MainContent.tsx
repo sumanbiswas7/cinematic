@@ -12,14 +12,11 @@ import { GET_AUTH_USER } from "@/graphql/queries/userQueries";
 
 export function MainContent({ children, isLoading, title }: Props) {
   const [loading, setLoading] = useState(true);
-  const [firstRun, setFirstRun] = useState(true);
   const [getAuthUser] = useLazyQuery(GET_AUTH_USER);
   const userctx = useContext(userContext);
 
   useEffect(() => {
-    const user = userctx?.user;
-    if (!user) handleGetAuthUser();
-
+    handleGetAuthUser();
     if (isLoading) setLoading(true);
     else setLoading(false);
   }, [isLoading]);
@@ -29,14 +26,14 @@ export function MainContent({ children, isLoading, title }: Props) {
 
     onAuthStateChanged(auth, (user) => {
       if (user) {
+        const firstload = userctx?.user;
         const setUser = userctx?.setUser!;
 
-        if (firstRun) {
+        if (!firstload) {
           getAuthUser({
             variables: { email: user.email },
             onCompleted: (data) => setUser(data.get_authuser),
           });
-          setFirstRun(false);
         }
       } else {
       }

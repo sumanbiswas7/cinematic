@@ -1,20 +1,13 @@
 import { User } from "@/components/User/User";
-import { GET_USER } from "@/graphql/queries/userQueries";
-import { useQuery } from "@apollo/client";
 import { useContext } from "react";
 import { userContext } from "../_app";
+import { getAuth } from "firebase/auth";
 
 export default function Profile() {
   const userctx = useContext(userContext);
-  let user = userctx?.user;
-  const isuserexists = user ? true : false;
-  const userRes = useQuery(GET_USER, {
-    variables: { userId: 2 },
-    skip: isuserexists,
-  });
+  const user = userctx?.user;
 
-  if (userRes.loading) return <h1>Loading</h1>;
-  if (!isuserexists) user = userRes.data?.get_user;
+  if (!user) return <h1>Login</h1>;
 
-  return <User user={user!} />;
+  return <User user={user} />;
 }
