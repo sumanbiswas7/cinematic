@@ -1,8 +1,9 @@
 import { useState } from "react";
 import moment from "moment";
 import styles from "./FriendRequest.module.scss";
+import Link from "next/link";
 
-export function FriendRequest({ image, name, time }: Props) {
+export function FriendRequest({ id, image, name, time }: Props) {
   const postTime = moment(time, "MMMM Do YYYY, h:mm:ss a").fromNow();
   const [accepted, setAccepted] = useState(false);
 
@@ -16,18 +17,20 @@ export function FriendRequest({ image, name, time }: Props) {
   return (
     <div className={styles.container}>
       <img src={image} />
-      {accepted ? (
-        <div>
-          <p>{name}</p>
-          <p>and you are now friends</p>
-        </div>
-      ) : (
-        <div>
-          <p>{name}</p>
-          <p>wants to be a friend</p>
-          <p>{postTime}</p>
-        </div>
-      )}
+      <Link href={`/users/${id}`} className={styles.link_container}>
+        {accepted ? (
+          <div className={styles.info_box}>
+            <p>{name}</p>
+            <p>and you are now friends</p>
+          </div>
+        ) : (
+          <div className={styles.info_box}>
+            <p>{name}</p>
+            <p>wants to be a friend</p>
+            <p>{postTime}</p>
+          </div>
+        )}
+      </Link>
       {!accepted && (
         <>
           <div className={styles.btn_box}>
@@ -45,6 +48,7 @@ export function FriendRequest({ image, name, time }: Props) {
 }
 
 interface Props {
+  id: number;
   image: string;
   name: string;
   time: string;

@@ -1,5 +1,8 @@
 @import "../../styles/constants.scss";
 
+.link_container {
+  text-decoration: none;
+}
 .container {
   @include flex-center;
   gap: 0.5rem;
@@ -12,7 +15,7 @@
     height: 2rem;
   }
 
-  & > div {
+  .info_box {
     font-size: 0.8rem;
     & > p:nth-child(1) {
       color: $accent;

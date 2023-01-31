@@ -4,7 +4,6 @@ import { FriendRequest } from "./FriendRequest";
 import styles from "./Notification.module.scss";
 import { Suggestion } from "./Suggestion";
 import NOTIFICATIONS from "../../../data/notifications.json";
-import moment from "moment";
 
 export function Notification() {
   const userctx = useContext(userContext);
@@ -33,11 +32,12 @@ function NotMsg({ notification }: Props) {
     const fromArr = notification.from.split("#");
     const name = fromArr[0];
     const movie = fromArr[1];
-    const id = fromArr[2];
+    const id = parseInt(fromArr[2]);
 
     return (
       <Suggestion
         key={id}
+        id={id}
         image={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${name}&scale=80`}
         name={name}
         time={notification.createdAt}
@@ -45,11 +45,16 @@ function NotMsg({ notification }: Props) {
       />
     );
   } else {
+    const fromArr = notification.from.split("#");
+    const name = fromArr[0];
+    const id = parseInt(fromArr[1]);
+
     return (
       <FriendRequest
+        id={id}
         key={notification.id}
-        image={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${notification.from}&scale=80`}
-        name={notification.from}
+        image={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${name}&scale=80`}
+        name={name}
         time={notification.createdAt}
       />
     );
