@@ -1,14 +1,16 @@
 import Link from "next/link";
-import { useState } from "react";
-import { FriendRequest } from "../Notification/FriendRequest";
-import { Suggestion } from "../Notification/Suggestion";
 import { ModalLink } from "./ModalLink";
 import styles from "./NavMobileBtn.module.scss";
 import { UserBtnBox } from "./UserBtnBox";
+import NOTIFICATIONS from "../../../data/notifications.json";
+import { NotificationContent } from "../Notification/NotificationContent";
+import { useState, useContext } from "react";
+import { userContext } from "@/pages/_app";
 
 export function NavMobileBtn() {
   const [userModal, setUserModal] = useState(false);
   const [notModal, setNotModal] = useState(false);
+  // const userctx = useContext(userContext);
 
   function handleUserClick() {
     setNotModal(false);
@@ -55,17 +57,9 @@ export function NavMobileBtn() {
             <div>{2}</div>
           </div>
           <div className={styles.not_scroll_box}>
-            <FriendRequest
-              image="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Scooter&scale=80"
-              name="John Milner"
-              time="January 23rd 2023, 3:16:59 pm"
-            />
-            <Suggestion
-              image="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=suman&scale=80"
-              name="John Milner"
-              time="January 23rd 2023, 3:16:59 pm"
-              movie="Django Unchained"
-            />
+            {NOTIFICATIONS.map((n) => {
+              return <NotificationContent key={n.id} notification={n} />;
+            })}
           </div>
         </div>
       )}
@@ -82,8 +76,4 @@ export function User() {
       />
     </Link>
   );
-}
-interface UserProps {
-  id: string;
-  image: string;
 }

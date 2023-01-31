@@ -34,6 +34,7 @@ export interface UserType {
     from: string;
     request: boolean;
     suggestion: boolean;
+    createdAt: string;
   }[];
   movies: {
     id: number;

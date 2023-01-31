@@ -18,8 +18,9 @@ export function Suggestion({
       <div className={styles.info_box}>
         <p>
           <Link href={`users/${userId}`} className={styles.link_container}>
-            {name} <span>has</span>
+            {name}
           </Link>
+          <span> has</span>
         </p>
         <p>suggested</p>
         <Link href={`movies/${movieId}`} className={styles.link_container}>
