@@ -6,6 +6,7 @@ import NOTIFICATIONS from "../../../data/notifications.json";
 import { NotificationContent } from "../Notification/NotificationContent";
 import { useState, useContext } from "react";
 import { userContext } from "@/pages/_app";
+import { avatarStyle } from "@/constants/diceBearStyle";
 
 export function NavMobileBtn() {
   const [userModal, setUserModal] = useState(false);
@@ -72,7 +73,7 @@ export function User() {
     <Link href={"/users/1"}>
       <img
         className={styles.userimg}
-        src="https://api.dicebear.com/5.x/bottts-neutral/svg?seed=Leo&scale=80"
+        src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=Leo&scale=80`}
       />
     </Link>
   );

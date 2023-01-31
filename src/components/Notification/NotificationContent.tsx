@@ -1,6 +1,7 @@
 import { FriendRequest } from "./FriendRequest";
 import { Suggestion } from "./Suggestion";
 import styles from "./NotificationContent.module.scss";
+import { avatarStyle } from "@/constants/diceBearStyle";
 
 export function NotificationContent({ notification }: Props) {
   // Notification is a Suggestion
@@ -16,7 +17,7 @@ export function NotificationContent({ notification }: Props) {
         key={movieId}
         movieId={movieId}
         userId={userId}
-        image={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${name}&scale=80`}
+        image={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${name}&scale=80`}
         name={name}
         time={notification.createdAt}
         movie={movie}
@@ -33,7 +34,7 @@ export function NotificationContent({ notification }: Props) {
       <FriendRequest
         id={id}
         key={notification.id}
-        image={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${name}&scale=80`}
+        image={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${name}&scale=80`}
         name={name}
         time={notification.createdAt}
       />

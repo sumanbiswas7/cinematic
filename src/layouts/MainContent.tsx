@@ -8,6 +8,7 @@ import { app } from "@/firebase/firebaseConfig";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { useLazyQuery } from "@apollo/client";
 import { GET_AUTH_USER } from "@/graphql/queries/userQueries";
+import { avatarStyle } from "@/constants/diceBearStyle";
 
 export function MainContent({ children, isLoading, title }: Props) {
   const [loading, setLoading] = useState(true);
@@ -64,7 +65,7 @@ function UserImg() {
   const userctx = useContext(userContext);
   const user = userctx?.user;
   const url = user?.name
-    ? `https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${user.name}&scale=80`
+    ? `https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${user.name}&scale=80`
     : "/navbar/blank_profile.jpg";
 
   return (

@@ -1,3 +1,4 @@
+import { avatarStyle } from "@/constants/diceBearStyle";
 import { UserType } from "@/pages/_app";
 import moment from "moment";
 import styles from "./User.module.scss";
@@ -11,7 +12,7 @@ export function User({ user }: Props) {
       <div className={styles.user_container}>
         <img
           className={styles.userimg}
-          src={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${user?.name}&scale=80`}
+          src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${user?.name}&scale=80`}
         />
         <h2 className={styles.name}>{user?.name}</h2>
         {user?.country && (
