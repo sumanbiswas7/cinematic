@@ -5,7 +5,6 @@ import { UserMovie } from "./UserMovie";
 
 export function User({ user }: Props) {
   const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
-  console.log(user);
 
   return (
     <div className={styles.container}>

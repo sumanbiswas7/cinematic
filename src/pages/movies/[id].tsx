@@ -17,9 +17,8 @@ export default function MovieById() {
 
   if (loading) return <p>Loading</p>;
   if (error) return <p>Error : {error.message}</p>;
-
   const movie = data.get_movie as Movie;
-  console.log(movie);
+
   return (
     <>
       <NavBar />
