@@ -2,6 +2,7 @@
 
 .link_container {
   text-decoration: none;
+  color: $accent;
 }
 .container {
   @include flex-center;

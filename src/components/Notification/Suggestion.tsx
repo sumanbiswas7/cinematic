@@ -2,28 +2,38 @@ import moment from "moment";
 import Link from "next/link";
 import styles from "./Suggestion.module.scss";
 
-export function Suggestion({ id, image, name, time, movie }: Props) {
+export function Suggestion({
+  userId,
+  movieId,
+  image,
+  name,
+  time,
+  movie,
+}: Props) {
   const postTime = moment(time, "MMMM Do YYYY, h:mm:ss a").fromNow();
 
   return (
     <div className={styles.container}>
       <img src={image} />
-      <Link href={`movies/${id}`} className={styles.link_container}>
-        <div className={styles.info_box}>
-          <p>
+      <div className={styles.info_box}>
+        <p>
+          <Link href={`users/${userId}`} className={styles.link_container}>
             {name} <span>has</span>
-          </p>
-          <p>suggested</p>
+          </Link>
+        </p>
+        <p>suggested</p>
+        <Link href={`movies/${movieId}`} className={styles.link_container}>
           <p>{movie}</p>
-          <p>{postTime}</p>
-        </div>
-      </Link>
+        </Link>
+        <p>{postTime}</p>
+      </div>
     </div>
   );
 }
 
 interface Props {
-  id: number;
+  movieId: number;
+  userId: number;
   image: string;
   name: string;
   time: string;

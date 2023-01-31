@@ -3,7 +3,6 @@ import styles from "./MainContent.module.scss";
 import { Loader as CLoader } from "../components/Loader/Loader";
 import Link from "next/link";
 import { NavMobileBtn } from "@/components/Navbar/NavMobileBtn";
-
 import { userContext } from "@/pages/_app";
 import { app } from "@/firebase/firebaseConfig";
 import { onAuthStateChanged, getAuth } from "firebase/auth";

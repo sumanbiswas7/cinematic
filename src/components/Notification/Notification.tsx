@@ -30,14 +30,17 @@ export function Notification() {
 function NotMsg({ notification }: Props) {
   if (notification.suggestion) {
     const fromArr = notification.from.split("#");
+    console.log(fromArr);
     const name = fromArr[0];
-    const movie = fromArr[1];
-    const id = parseInt(fromArr[2]);
+    const userId = parseInt(fromArr[1]);
+    const movie = fromArr[2];
+    const movieId = parseInt(fromArr[3]);
 
     return (
       <Suggestion
-        key={id}
-        id={id}
+        key={movieId}
+        movieId={movieId}
+        userId={userId}
         image={`https://api.dicebear.com/5.x/bottts-neutral/svg?seed=${name}&scale=80`}
         name={name}
         time={notification.createdAt}
