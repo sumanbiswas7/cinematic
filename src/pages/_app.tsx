@@ -23,7 +23,7 @@ interface UserContextType {
   setUser: Dispatch<SetStateAction<null>>;
 }
 
-interface UserType {
+export interface UserType {
   id: number;
   name: string;
   email: string;
