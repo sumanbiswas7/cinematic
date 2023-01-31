@@ -19,10 +19,8 @@ export default function Home() {
   const userctx = useContext(userContext);
 
   useEffect(() => {
-    handleGetAuthUser();
+    // handleGetAuthUser();
   }, []);
-
-  if (movieRes.error) return <p>Error : {movieRes.error.message}</p>;
 
   function handleGetAuthUser() {
     const auth = getAuth(app);
@@ -42,6 +40,8 @@ export default function Home() {
       }
     });
   }
+
+  if (movieRes.error) return <p>Error : {movieRes.error.message}</p>;
 
   return (
     <>

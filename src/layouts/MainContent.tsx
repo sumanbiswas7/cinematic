@@ -3,15 +3,45 @@ import styles from "./MainContent.module.scss";
 import { Loader as CLoader } from "../components/Loader/Loader";
 import Link from "next/link";
 import { NavMobileBtn } from "@/components/Navbar/NavMobileBtn";
+
 import { userContext } from "@/pages/_app";
+import { app } from "@/firebase/firebaseConfig";
+import { onAuthStateChanged, getAuth } from "firebase/auth";
+import { useLazyQuery } from "@apollo/client";
+import { GET_AUTH_USER } from "@/graphql/queries/userQueries";
 
 export function MainContent({ children, isLoading, title }: Props) {
   const [loading, setLoading] = useState(true);
+  const [firstRun, setFirstRun] = useState(true);
+  const [getAuthUser] = useLazyQuery(GET_AUTH_USER);
+  const userctx = useContext(userContext);
 
   useEffect(() => {
+    const user = userctx?.user;
+    if (!user) handleGetAuthUser();
+
     if (isLoading) setLoading(true);
     else setLoading(false);
   }, [isLoading]);
+
+  function handleGetAuthUser() {
+    const auth = getAuth(app);
+
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        const setUser = userctx?.setUser!;
+
+        if (firstRun) {
+          getAuthUser({
+            variables: { email: user.email },
+            onCompleted: (data) => setUser(data.get_authuser),
+          });
+          setFirstRun(false);
+        }
+      } else {
+      }
+    });
+  }
 
   return (
     <main className={styles.main}>
