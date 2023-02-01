@@ -1,5 +1,43 @@
 @import "../../styles/constants.scss";
 
+.container {
+  @include flex-center;
+  gap: 0.5rem;
+}
+
+// NOTIFICATION BTN
+$bg: #23272a;
+.not_btn {
+  $size: 2rem;
+  cursor: pointer;
+  background-color: #fff;
+  height: $size;
+  width: $size;
+  border: none;
+  border-radius: 50%;
+  position: relative;
+  @include flex-center;
+
+  & > .bell_icon {
+    fill: $bg;
+  }
+
+  & > .not_count {
+    position: absolute;
+    background-color: $bg;
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.7rem;
+    top: -0.1rem;
+    right: -0.2rem;
+    $size: 0.85rem;
+    width: $size;
+    height: $size;
+    border-radius: 50%;
+  }
+}
+
+// THREE DOTS BUTTON
 .navbtn {
   $size: 2rem;
   cursor: pointer;
@@ -12,9 +50,9 @@
   flex-direction: column;
 
   & > div {
-    width: 60%;
+    width: 55%;
     height: 2px;
-    background-color: black;
+    background-color: $bg;
   }
 
   #line_2 {

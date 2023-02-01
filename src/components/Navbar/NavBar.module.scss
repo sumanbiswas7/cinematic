@@ -21,7 +21,7 @@
 
 .logo_container {
   background-color: $accent-dark;
-  height: 2.5rem;
+  height: $navbar-height;
   .link_cont {
     @include flex-center;
     height: 100%;

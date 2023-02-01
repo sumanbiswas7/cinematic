@@ -5,7 +5,6 @@ import styles from "./NavModal.module.scss";
 import {
   AiFillInfoCircle,
   AiOutlinePlus,
-  AiOutlineLogout,
   AiOutlineRight,
 } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
