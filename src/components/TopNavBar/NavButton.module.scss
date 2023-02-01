@@ -17,6 +17,9 @@ $bg: #23272a;
   border-radius: 50%;
   position: relative;
   @include flex-center;
+  @media only screen and (width > $breakpoint-mobile) {
+    display: none;
+  }
 
   & > .bell_icon {
     fill: $bg;
