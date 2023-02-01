@@ -28,7 +28,7 @@ export function NavButton() {
           <span className={styles.not_count}>{notifications?.length}</span>
         )}
       </button>
-      {notmodal && <NotModal />}
+      {notmodal && <NotModal notifications={notifications!} />}
 
       <button onClick={handleModalChange} className={styles.navbtn}>
         <div id={modal ? styles.active_line_1 : styles.line_1}></div>
