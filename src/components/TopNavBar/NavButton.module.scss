@@ -1,7 +1,40 @@
+@import "../../styles/constants.scss";
+
 .navbtn {
+  $size: 2rem;
+  cursor: pointer;
   background-color: #fff;
-  height: 1.7rem;
-  width: 1.7rem;
+  height: $size;
+  width: $size;
   border: none;
   border-radius: 50%;
+  @include flex-center;
+  flex-direction: column;
+
+  & > div {
+    width: 60%;
+    height: 2px;
+    background-color: black;
+  }
+
+  #line_2 {
+    margin-block: 4px;
+  }
+  #line_1,
+  #line_2,
+  #line_3 {
+    transition: all 0.2s;
+  }
+
+  #active_line_2 {
+    opacity: 0;
+  }
+  #active_line_1 {
+    transform: translateY(2px) rotate(45deg);
+    transition: all 0.2s;
+  }
+  #active_line_3 {
+    transform: translateY(-2px) rotate(-45deg);
+    transition: all 0.2s;
+  }
 }

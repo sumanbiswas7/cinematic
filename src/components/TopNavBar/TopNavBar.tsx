@@ -12,8 +12,8 @@ export function TopNavBar() {
       <Link href="/" className={styles.link_cont}>
         <img src="/logo.svg" className={styles.logo_img} />
       </Link>
-      {/* <NavMobileBtn />
-      <UserImg /> */}
+      {/* <NavMobileBtn /> */}
+      {/* <UserImg />  */}
       <NavButton />
     </div>
   );
