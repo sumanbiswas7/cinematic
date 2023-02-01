@@ -150,12 +150,74 @@ $icon-size: 2rem;
     height: $icon-size;
     border-radius: 50%;
     margin-right: 1rem;
+    transition: all 0.1s;
   }
 
-  & > .link {
+  & > .link,
+  .logout_btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
     text-decoration: none;
     color: #fff;
     font-weight: 500;
     font-size: 0.85rem;
+  }
+
+  &:hover #iconbox {
+    background-color: #757575;
+  }
+
+  .logout_icon {
+    margin-left: 2px;
+    margin-top: 2px;
+  }
+}
+
+// LOGOUT MODAL
+.logout_modal {
+  background-color: rgba($color: #2c2c2c, $alpha: 0.5);
+  backdrop-filter: blur(5px);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flex-center;
+
+}
+
+.middle_box {
+  width: 15rem;
+  height: 10rem;
+  border-radius: 5px;
+  background-color: $bg;
+  border: 1px solid $bg-border;
+  padding: 0.5rem;
+  @include flex-center;
+  flex-direction: column;
+
+  & > p {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #fff;
+  }
+
+  & > .btn_box {
+    margin-top: 1rem;
+    & > button {
+      cursor: pointer;
+      border: none;
+      border-radius: 0.2rem;
+      margin-inline: 0.3rem;
+      width: 3rem;
+      height: 2rem;
+    }
+
+    .yesbtn {
+      background-color: $accent;
+    }
+    .nobtn {
+    }
   }
 }

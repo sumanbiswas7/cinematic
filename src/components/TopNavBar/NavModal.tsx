@@ -9,8 +9,12 @@ import {
   AiOutlineRight,
 } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
+import { GoSignOut } from "react-icons/go";
 import { useRouter } from "next/router";
 import { userContext } from "@/pages/_app";
+import { getAuth } from "firebase/auth";
+import { app } from "@/firebase/firebaseConfig";
+import { Loader } from "@mantine/core";
 
 export function NavModal() {
   const userctx = useContext(userContext);
@@ -38,11 +42,7 @@ export function NavModal() {
             title="Friends"
             href="/"
           />
-          <NavIconLink
-            icon={<AiOutlineLogout fill="#B9B9B9" />}
-            title="New Movie"
-            href="/"
-          />
+          <LogOutBtn />
         </div>
       )}
     </div>
@@ -132,7 +132,7 @@ interface NavLinkProps {
 function NavIconLink({ icon, title, href }: NavIconLinkProps) {
   return (
     <div className={styles.navicon_linkbox}>
-      <div>{icon}</div>
+      <div id={styles.iconbox}>{icon}</div>
       <Link href={href} className={styles.link}>
         <p>{title}</p>
       </Link>
@@ -144,4 +144,59 @@ interface NavIconLinkProps {
   icon: React.ReactNode;
   title: string;
   href: string;
+}
+
+function LogOutBtn() {
+  const [modal, setModal] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const userctx = useContext(userContext);
+
+  async function handleLogout() {
+    setLoading(true);
+    const auth = getAuth(app);
+    auth.signOut();
+    const setUser = userctx?.setUser!;
+    setUser(null);
+    router.replace("/");
+  }
+
+  return (
+    <>
+      <div className={styles.navicon_linkbox}>
+        <div id={styles.iconbox}>
+          <GoSignOut fill="#B9B9B9" className={styles.logout_icon} />
+        </div>
+        <button onClick={() => setModal(!modal)} className={styles.logout_btn}>
+          Log Out
+        </button>
+      </div>
+      {modal && (
+        <>
+          <div className={styles.logout_modal}>
+            <div className={styles.middle_box}>
+              {!loading ? (
+                <>
+                  <p>Are you sure you want to Log out?</p>
+                  <div className={styles.btn_box}>
+                    <button onClick={handleLogout} className={styles.yesbtn}>
+                      YES
+                    </button>
+                    <button
+                      onClick={() => setModal(!modal)}
+                      className={styles.nobtn}
+                    >
+                      NO
+                    </button>
+                  </div>
+                </>
+              ) : (
+                <Loader color={"#fff"} size={20} />
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </>
+  );
 }
