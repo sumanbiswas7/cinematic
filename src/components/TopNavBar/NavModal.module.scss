@@ -37,15 +37,18 @@ $icon-size: 2rem;
     margin-right: 1rem;
   }
   .contentbox {
-    & > h2 {
+    .user_name {
       font-weight: 500;
       color: #fff;
       font-size: 1rem;
     }
 
-    & > p {
+    .user_btm_text {
       font-size: 0.7rem;
       color: #8a8a8a;
+      & > span {
+        color: #fff;
+      }
     }
   }
 
@@ -87,6 +90,9 @@ $icon-size: 2rem;
 .mid_content {
   border-top: 1px solid $outline;
   padding-block: 0.5rem;
+  @media only screen and (width > $breakpoint-mobile) {
+    display: none;
+  }
 }
 .navlink {
   text-decoration: none;

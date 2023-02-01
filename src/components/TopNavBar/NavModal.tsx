@@ -1,6 +1,6 @@
 import { avatarStyle } from "@/constants/diceBearStyle";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import styles from "./NavModal.module.scss";
 import {
   AiFillInfoCircle,
@@ -9,13 +9,16 @@ import {
   AiOutlineRight,
 } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
-import { BsArrowRightShort } from "react-icons/bs";
 import { useRouter } from "next/router";
+import { userContext } from "@/pages/_app";
 
 export function NavModal() {
+  const userctx = useContext(userContext);
+  const user = userctx?.user;
+
   return (
     <div className={styles.container}>
-      <User name="Suman Biswas" />
+      <User name={user?.name} />
       <ReportIssue />
       <div className={styles.mid_content}>
         <NavLink title="Recently Added" href="/" />
@@ -23,46 +26,64 @@ export function NavModal() {
         <NavLink title="Favourites" href="/favourites" />
         <NavLink title="Watch Later" href="/watchlater" />
       </div>
-      <div className={styles.btm_content}>
-        <NavIconLink
-          icon={<AiOutlinePlus fill="#B9B9B9" />}
-          title="New Movie"
-          href="/"
-        />
-        <NavIconLink
-          icon={<HiUserGroup fill="#B9B9B9" />}
-          title="Friends"
-          href="/"
-        />
-        <NavIconLink
-          icon={<AiOutlineLogout fill="#B9B9B9" />}
-          title="New Movie"
-          href="/"
-        />
-      </div>
+      {user && (
+        <div className={styles.btm_content}>
+          <NavIconLink
+            icon={<AiOutlinePlus fill="#B9B9B9" />}
+            title="New Movie"
+            href="/"
+          />
+          <NavIconLink
+            icon={<HiUserGroup fill="#B9B9B9" />}
+            title="Friends"
+            href="/"
+          />
+          <NavIconLink
+            icon={<AiOutlineLogout fill="#B9B9B9" />}
+            title="New Movie"
+            href="/"
+          />
+        </div>
+      )}
     </div>
   );
 }
 
 function User({ name }: UserProps) {
+  const imgSrc = name
+    ? `https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${name}&scale=80`
+    : "/navbar/blank_profile.jpg";
+
+  const userName = name ? (
+    <>
+      <h2 className={styles.user_name}>{name}</h2>
+      <p className={styles.user_btm_text}>See your profile</p>
+    </>
+  ) : (
+    <>
+      <Link href={"/auth/signup"} className={styles.link}>
+        <h2 className={styles.user_name}>Sign Up</h2>
+      </Link>
+      <Link href={"/auth/login"} className={styles.link}>
+        <p className={styles.user_btm_text}>
+          Have an existing account? <span>Log In</span> here
+        </p>
+      </Link>
+    </>
+  );
+
   return (
     <Link href={`/profile`} className={styles.link}>
       <div className={styles.main_box}>
-        <img
-          className={styles.profileimg}
-          src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${name}&scale=80`}
-        />
-        <div className={styles.contentbox}>
-          <h2>{name}</h2>
-          <p>See your profile</p>
-        </div>
+        <img className={styles.profileimg} src={imgSrc} />
+        <div className={styles.contentbox}>{userName}</div>
       </div>
     </Link>
   );
 }
 
 interface UserProps {
-  name: string;
+  name: string | null | undefined;
   id?: number;
 }
 
@@ -88,7 +109,6 @@ function ReportIssue() {
 
 function NavLink({ href, title }: NavLinkProps) {
   const route = useRouter().route;
-  console.log(route, href);
 
   return (
     <Link href={href} className={styles.navlink}>
