@@ -15,9 +15,19 @@ $icon-size: 2rem;
   padding-inline: 1rem;
   border: 1px solid $bg-border;
   top: $navbar-height;
+  animation: navmodal-animation 0.3s;
 
   @media only screen and (width <= $breakpoint-mobile) {
     top: $navbar_mobile-height;
+  }
+}
+
+@keyframes navmodal-animation {
+  0% {
+    transform: translateX(23rem);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 
