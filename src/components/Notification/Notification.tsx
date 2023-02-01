@@ -2,7 +2,6 @@ import { userContext } from "@/pages/_app";
 import { useContext } from "react";
 import styles from "./Notification.module.scss";
 import { NotificationContent } from "./NotificationContent";
-import NOTIFICATIONS from "../../../data/notifications.json";
 
 export function Notification() {
   const userctx = useContext(userContext);

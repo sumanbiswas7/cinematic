@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { NotificationContent } from "../Notification/NotificationContent";
 import styles from "./NotModal.module.scss";
 
