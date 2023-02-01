@@ -6,14 +6,23 @@ import {
   AiFillInfoCircle,
   AiOutlinePlus,
   AiOutlineLogout,
+  AiOutlineRight,
 } from "react-icons/ai";
 import { HiUserGroup } from "react-icons/hi";
+import { BsArrowRightShort } from "react-icons/bs";
+import { useRouter } from "next/router";
 
 export function NavModal() {
   return (
     <div className={styles.container}>
       <User name="Suman Biswas" />
       <ReportIssue />
+      <div className={styles.mid_content}>
+        <NavLink title="Recently Added" href="/" />
+        <NavLink title="Suggestions" href="/suggestions" />
+        <NavLink title="Favourites" href="/favourites" />
+        <NavLink title="Watch Later" href="/watchlater" />
+      </div>
       <div className={styles.btm_content}>
         <NavIconLink
           icon={<AiOutlinePlus fill="#B9B9B9" />}
@@ -75,6 +84,29 @@ function ReportIssue() {
       </div>
     </div>
   );
+}
+
+function NavLink({ href, title }: NavLinkProps) {
+  const route = useRouter().route;
+  console.log(route, href);
+
+  return (
+    <Link href={href} className={styles.navlink}>
+      <div className={styles.navlink_container}>
+        {href == route ? (
+          <div className={styles.active_circle}></div>
+        ) : (
+          <AiOutlineRight fill="#B9B9B9" className={styles.rightarrow_icon} />
+        )}
+        <p>{title}</p>
+      </div>
+    </Link>
+  );
+}
+
+interface NavLinkProps {
+  href: string;
+  title: string;
 }
 
 function NavIconLink({ icon, title, href }: NavIconLinkProps) {

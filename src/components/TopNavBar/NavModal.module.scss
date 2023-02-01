@@ -83,9 +83,43 @@ $icon-size: 2rem;
   }
 }
 
+// MIDDLE CONTENT
+.mid_content {
+  border-top: 1px solid $outline;
+  padding-block: 0.5rem;
+}
+.navlink {
+  text-decoration: none;
+}
+.navlink_container {
+  @include flex-center;
+  justify-content: flex-start;
+  padding-left: 0.5rem;
+  margin-block: 0.65rem;
+
+  .active_circle {
+    background-color: $accent;
+    height: 0.6rem;
+    width: 0.6rem;
+    border-radius: 50%;
+    margin-left: 0.1rem;
+    margin-right: 1.7rem;
+  }
+  .rightarrow_icon {
+    margin-right: 1.5rem;
+  }
+
+  & > p {
+    color: #fff;
+    font-weight: 500;
+    font-size: 0.85rem;
+  }
+}
+
 // BOTTOM SECTION LINKS
 .btm_content {
   border-top: 1px solid $outline;
+  padding-block: 0.5rem;
 }
 
 .navicon_linkbox {
