@@ -15,9 +15,13 @@ import { getAuth } from "firebase/auth";
 import { app } from "@/firebase/firebaseConfig";
 import { Loader } from "@mantine/core";
 
-export function NavModal() {
+export function NavModal({ onFrndsModal }: Props) {
   const userctx = useContext(userContext);
   const user = userctx?.user;
+
+  function handleFriendsModalClick(e: React.MouseEvent<HTMLButtonElement>) {
+    onFrndsModal(e);
+  }
 
   return (
     <div className={styles.container}>
@@ -36,16 +40,16 @@ export function NavModal() {
             title="New Movie"
             href="/"
           />
-          <NavIconLink
-            icon={<HiUserGroup fill="#B9B9B9" />}
-            title="Friends"
-            href="/"
-          />
+          <FriendsBtn handleClick={handleFriendsModalClick} />
           <LogOutBtn />
         </div>
       )}
     </div>
   );
+}
+
+interface Props {
+  onFrndsModal(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 function User({ name }: UserProps) {
@@ -80,7 +84,6 @@ function User({ name }: UserProps) {
     </Link>
   );
 }
-
 interface UserProps {
   name: string | null | undefined;
   id?: number;
@@ -122,7 +125,6 @@ function NavLink({ href, title }: NavLinkProps) {
     </Link>
   );
 }
-
 interface NavLinkProps {
   href: string;
   title: string;
@@ -138,11 +140,30 @@ function NavIconLink({ icon, title, href }: NavIconLinkProps) {
     </div>
   );
 }
-
 interface NavIconLinkProps {
   icon: React.ReactNode;
   title: string;
   href: string;
+}
+
+function FriendsBtn({ handleClick }: FriendsBtnProps) {
+  function click(e: React.MouseEvent<HTMLButtonElement>) {
+    handleClick(e);
+  }
+
+  return (
+    <div className={styles.navicon_linkbox}>
+      <div id={styles.iconbox}>
+        <HiUserGroup fill="#B9B9B9" />
+      </div>
+      <button onClick={click} className={styles.link_text}>
+        Friends
+      </button>
+    </div>
+  );
+}
+interface FriendsBtnProps {
+  handleClick(e: React.MouseEvent<HTMLButtonElement>): void;
 }
 
 function LogOutBtn() {
