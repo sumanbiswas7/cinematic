@@ -40,6 +40,10 @@
   @include flex-center;
   gap: 0.5rem;
 
+  @media only screen and (width <= $breakpoint-mobile) {
+    margin-left: 1rem;
+  }
+
   & > button {
     $size: 1.3rem;
     width: $size;
@@ -55,6 +59,11 @@
 
     &:hover {
       outline: 1px solid #fff;
+    }
+
+    @media only screen and (width <= $breakpoint-mobile) {
+      width: 2rem;
+      height: 2rem;
     }
   }
 
