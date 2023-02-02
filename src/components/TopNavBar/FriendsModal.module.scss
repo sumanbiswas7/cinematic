@@ -4,7 +4,6 @@ $bg: #23272a;
 $bg-border: #303030;
 $outline: #3f3f3f;
 $icon: #b9b9b9;
-
 $icon-size: 2rem;
 
 .container {
@@ -25,4 +24,21 @@ $icon-size: 2rem;
   @media only screen and (width <= $breakpoint-mobile) {
     top: $navbar_mobile-height;
   }
+
+  @keyframes navmodal-animation {
+    0% {
+      filter: blur(5px) opacity(0);
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+}
+
+.nofriend_text {
+  font-weight: 300;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  padding-block: 0.5rem;
 }

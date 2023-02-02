@@ -11,7 +11,8 @@ export function NavButton() {
   const [notmodal, setNotmodal] = useState(false);
   const [frnsmodal, setFrnsModal] = useState(false);
   const userctx = useContext(userContext);
-  const notifications = userctx?.user?.notifications;
+  const notifications = userctx?.user?.notifications || [];
+  const friends = userctx?.user?.friends || [];
 
   function handleModalChange() {
     setFrnsModal(false);
@@ -45,7 +46,7 @@ export function NavButton() {
         <div id={modal ? styles.active_line_3 : styles.line_3}></div>
       </button>
       {modal && <NavModal onFrndsModal={handleFriendsModalClick} />}
-      {frnsmodal && <FriendsModal />}
+      {frnsmodal && <FriendsModal friends={friends} />}
     </div>
   );
 }

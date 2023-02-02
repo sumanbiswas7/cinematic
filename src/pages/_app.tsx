@@ -29,6 +29,7 @@ export interface UserType {
   email: string;
   country: string;
   createdAt: string;
+  friends: string[];
   notifications?: {
     id: number;
     from: string;
