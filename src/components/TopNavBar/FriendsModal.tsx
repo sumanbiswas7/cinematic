@@ -9,7 +9,7 @@ export function FriendsModal({ friends }: Props) {
   return (
     <div className={styles.container}>
       {friends.map((f) => {
-        return <Friend friend={f} />;
+        return <Friend key={f} friend={f} />;
       })}
     </div>
   );
@@ -44,7 +44,7 @@ function NoFriend() {
   return (
     <div className={styles.container}>
       <p className={styles.nofriend_text}>
-        Sorry You don't have any friends 😔
+        Sorry You don&apos;t have any friends 😔
       </p>
     </div>
   );
