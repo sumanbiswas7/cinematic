@@ -1,9 +1,5 @@
 @import "../../styles/constants.scss";
 
-.link_container {
-  text-decoration: none;
-}
-
 .container {
   @include flex-center;
   gap: 0.5rem;
@@ -18,7 +14,15 @@
 
   .info_box {
     font-size: 0.8rem;
-    & > p:nth-child(1) {
+
+    .next_link {
+      text-decoration: none;
+      font-weight: 500;
+      color: $accent;
+    }
+
+    & > .name {
+      cursor: pointer;
       color: $accent;
       font-weight: 500;
     }
@@ -60,4 +64,8 @@
   & > button:nth-child(2) {
     background-color: $font-sub-1;
   }
+}
+
+.req_deleted {
+  color: #fff;
 }

@@ -6,43 +6,42 @@ import Link from "next/link";
 export function FriendRequest({ id, image, name, time }: Props) {
   const postTime = moment(time, "MMMM Do YYYY, h:mm:ss a").fromNow();
   const [accepted, setAccepted] = useState(false);
+  const [rejected, setRejected] = useState(false);
 
   function handleTickClick() {
     setAccepted(true);
   }
   function handleCancelClick() {
-    setAccepted(false);
+    setRejected(true);
+  }
+
+  if (accepted) {
+    return <AcceptedRequest id={id} image={image} name={name} key={id} />;
+  }
+  if (rejected) {
+    return <RejectedRequest id={id} image={image} name={name} key={id} />;
   }
 
   return (
     <div className={styles.container}>
       <img src={image} />
-      <Link href={`/users/${id}`} className={styles.link_container}>
-        {accepted ? (
-          <div className={styles.info_box}>
-            <p>{name}</p>
-            <p>and you are now friends</p>
-          </div>
-        ) : (
-          <div className={styles.info_box}>
-            <p>{name}</p>
-            <p>wants to be a friend</p>
-            <p>{postTime}</p>
-          </div>
-        )}
-      </Link>
-      {!accepted && (
-        <>
-          <div className={styles.btn_box}>
-            <button onClick={handleTickClick}>
-              <img src="/notification/tick.svg" />
-            </button>
-            <button onClick={handleCancelClick}>
-              <img src="/notification/cross.svg" />
-            </button>
-          </div>
-        </>
-      )}
+
+      <div className={styles.info_box}>
+        <Link href={`/users/${id}`} className={styles.next_link}>
+          <p className={styles.name}>{name}</p>
+        </Link>
+        <p>wants to be a friend</p>
+        <p>{postTime}</p>
+      </div>
+
+      <div className={styles.btn_box}>
+        <button onClick={handleTickClick}>
+          <img src="/notification/tick.svg" />
+        </button>
+        <button onClick={handleCancelClick}>
+          <img src="/notification/cross.svg" />
+        </button>
+      </div>
     </div>
   );
 }
@@ -52,4 +51,46 @@ interface Props {
   image: string;
   name: string;
   time: string;
+}
+
+function AcceptedRequest({ id, name, image }: AcceptedRequestProps) {
+  return (
+    <div className={styles.container}>
+      <img src={image} />
+
+      <div className={styles.info_box}>
+        <Link href={`/users/${id}`} className={styles.next_link}>
+          <p className={styles.name}>{name}</p>
+        </Link>
+        <p>and you are now friends</p>
+      </div>
+    </div>
+  );
+}
+
+interface AcceptedRequestProps {
+  id: number;
+  name: string;
+  image: string;
+}
+
+function RejectedRequest({ id, name, image }: RejectedRequestProps) {
+  return (
+    <div className={styles.container}>
+      <img src={image} />
+
+      <div className={styles.info_box}>
+        <Link href={`/users/${id}`} className={styles.next_link}>
+          <p className={styles.name}>{name}</p>
+        </Link>
+        <p>Friend request rejected</p>
+      </div>
+    </div>
+  );
+}
+
+interface RejectedRequestProps {
+  id: number;
+  name: string;
+  image: string;
 }

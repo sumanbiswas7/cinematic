@@ -32,11 +32,13 @@ query ($email: String!) {
     email
     country
     createdAt
+    friends
     notifications {
       id
       from
       request
       suggestion
+      createdAt
     }
     movies {
       id
@@ -44,6 +46,7 @@ query ($email: String!) {
       image
       type
       rating
+      createdAt
     }
   }
 }
