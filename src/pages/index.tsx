@@ -13,6 +13,7 @@ export default function Home() {
   const movieRes = useQuery(GET_MOVIES, { variables: { limit: 12 } });
 
   useEffect(() => {
+    if (movieRes.data) setLoading(false);
     if (movieRes.loading) setLoading(true);
     if (movieRes.error) {
       console.log(movieRes.error);
