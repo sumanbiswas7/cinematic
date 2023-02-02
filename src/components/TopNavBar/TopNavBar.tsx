@@ -1,8 +1,6 @@
 import Link from "next/link";
 import styles from "./TopNavBar.module.scss";
 import { NavButton } from "./NavButton";
-import { userContext } from "@/pages/_app";
-import { useContext } from "react";
 
 export function TopNavBar() {
   return (
@@ -10,8 +8,6 @@ export function TopNavBar() {
       <Link href="/" className={styles.link_cont}>
         <img src="/logo.svg" className={styles.logo_img} />
       </Link>
-      {/* <NavMobileBtn /> */}
-      {/* <UserImg />  */}
       <NavButton />
     </div>
   );

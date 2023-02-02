@@ -13,6 +13,7 @@ export function NavButton() {
   const userctx = useContext(userContext);
   const notifications = userctx?.user?.notifications || [];
   const friends = userctx?.user?.friends || [];
+  // const friends = ["Robin Doge#3", "Rahul Biswas#5", "Suman Biswas#2"];
 
   function handleModalChange() {
     setFrnsModal(false);
