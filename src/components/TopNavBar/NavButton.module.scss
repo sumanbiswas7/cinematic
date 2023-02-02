@@ -23,6 +23,11 @@ $bg: #23272a;
 
   & > .bell_icon {
     fill: $bg;
+    transition: all 0.1s;
+  }
+
+  & > .active_bell_icon {
+    transform: rotate(15deg);
   }
 
   & > .not_count {

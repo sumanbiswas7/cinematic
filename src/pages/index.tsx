@@ -6,11 +6,19 @@ import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
 import { useQuery } from "@apollo/client";
 import { GET_MOVIES } from "@/graphql/queries/movieQueries";
 import styles from "@/styles/Home.module.scss";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const movieRes = useQuery(GET_MOVIES, { variables: { limit: 12 } });
 
-  if (movieRes.error) return <p>Error : {movieRes.error.message}</p>;
+  useEffect(() => {
+    if (movieRes.loading) setLoading(true);
+    if (movieRes.error) {
+      console.log(movieRes.error);
+      setLoading(true);
+    }
+  }, [movieRes]);
 
   return (
     <>
@@ -22,7 +30,7 @@ export default function Home() {
       </Head>
       <NavBar />
 
-      <MainContent title="Recent Movies" isLoading={movieRes.loading}>
+      <MainContent title="Recent Movies" isLoading={loading}>
         <MovieGrid>
           {movieRes?.data?.get_movies.map((movie: any) => {
             return (

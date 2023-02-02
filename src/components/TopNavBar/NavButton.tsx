@@ -13,7 +13,6 @@ export function NavButton() {
   const userctx = useContext(userContext);
   const notifications = userctx?.user?.notifications || [];
   const friends = userctx?.user?.friends || [];
-  // const friends = ["Robin Doge#3", "Rahul Biswas#5", "Suman Biswas#2"];
 
   function handleModalChange() {
     setFrnsModal(false);
@@ -31,10 +30,15 @@ export function NavButton() {
     setFrnsModal(!frnsmodal);
   }
 
+  function getIconClassName() {
+    if (notmodal) return `${styles.bell_icon} ${styles.active_bell_icon}`;
+    else return styles.bell_icon;
+  }
+
   return (
     <div className={styles.container}>
       <button className={styles.not_btn} onClick={handleNotModalChange}>
-        <AiFillBell size={22} className={styles.bell_icon} />
+        <AiFillBell size={22} className={getIconClassName()} />
         {notifications && notifications.length != 0 && (
           <span className={styles.not_count}>{notifications?.length}</span>
         )}
