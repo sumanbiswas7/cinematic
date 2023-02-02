@@ -27,7 +27,7 @@ interface Props {
 function NoNotification() {
   return (
     <div className={styles.container}>
-      <p className={styles.no_not_msg}>You don't have any notification</p>
+      <p className={styles.no_not_msg}>You don&apos;t have any notification</p>
     </div>
   );
 }
