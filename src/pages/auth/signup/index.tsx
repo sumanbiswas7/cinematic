@@ -12,20 +12,24 @@ export default function SignUp() {
   const [error, setError] = useState("");
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const selectRef = useRef<HTMLInputElement>(null);
+  const nameRef = useRef<HTMLInputElement>(null);
   const [loading, setLoading] = useState(false);
 
   async function handleSubmitForm(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
     const email = emailRef.current?.value;
     const password = passwordRef.current?.value;
+    const country = selectRef.current?.value;
+    const name = nameRef.current?.value;
 
     if (!email) return setError("Email is required 📧");
     if (!password) return setError("Password is required 🔒");
+
     setLoading(true);
 
-    const auth = getAuth(app);
-
     try {
+      const auth = getAuth(app);
       // await signInWithEmailAndPassword(auth, email, password);
       setLoading(false);
       router.replace("/");
@@ -44,7 +48,7 @@ export default function SignUp() {
         </div>
         <form className={styles.main_form}>
           <p className={styles.header}>Signup</p>
-          <TopRow />
+          <TopRow selectRef={selectRef} nameRef={nameRef} />
           <div className={styles.inp_div}>
             <label className={styles.label} htmlFor="#email">
               Email
@@ -93,7 +97,7 @@ export default function SignUp() {
   );
 }
 
-function TopRow() {
+function TopRow({ selectRef, nameRef }: TopRowProps) {
   return (
     <div className={styles.top_row}>
       <div className={styles.inp_div}>
@@ -101,6 +105,7 @@ function TopRow() {
           Name
         </label>
         <input
+          ref={nameRef}
           id="#name"
           required
           placeholder="John Doe"
@@ -108,6 +113,7 @@ function TopRow() {
         />
       </div>
       <Select
+        ref={selectRef}
         placeholder="India"
         label="Country"
         data={data}
@@ -132,4 +138,9 @@ function TopRow() {
       />
     </div>
   );
+}
+
+interface TopRowProps {
+  selectRef: React.Ref<HTMLInputElement>;
+  nameRef: React.Ref<HTMLInputElement>;
 }
