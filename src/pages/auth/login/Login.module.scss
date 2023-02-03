@@ -1,0 +1,140 @@
+@import "../../../styles/constants.scss";
+
+$wrap-breakpoint: 770px;
+$wrap-breakpoint-2: 485px;
+// $wrap-breakpoint-2: 585px;
+
+.page_container {
+  min-width: 100vw;
+  min-height: 100vh;
+  @include flex-center;
+}
+
+.container {
+  $size: 30rem;
+  @include flex-center;
+
+  @media only screen and (width < $wrap-breakpoint) {
+    flex-direction: column;
+  }
+
+  .form_img {
+    height: $size;
+    width: $size * 1.6 - $size;
+    background-image: url("../../../../public/login/background.webp");
+    position: relative;
+
+    @media only screen and (width < $wrap-breakpoint) {
+      height: $size * 0.5;
+      width: $size;
+    }
+    @media only screen and (width < $wrap-breakpoint-2) {
+      height: $size * 0.5;
+      width: 100%;
+    }
+
+    &::before {
+      content: "";
+      background-color: rgba($accent, 0.85);
+      filter: brightness(0.8);
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  }
+
+  .logo_img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8rem;
+    z-index: 10;
+  }
+
+  .main_form {
+    height: $size;
+    width: $size;
+    background-color: #fff;
+    @include flex-center;
+    flex-direction: column;
+    @media only screen and (width > $wrap-breakpoint-2) {
+      padding-inline: 4rem;
+    }
+
+    .header {
+      font-weight: 500;
+    }
+    .inp_div {
+      @include flex-center;
+      width: 95%;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .input,
+    .submit_btn {
+      width: 100%;
+      height: 2.2rem;
+      margin-bottom: 0.5rem;
+      border-radius: 0.1rem;
+      border: none;
+      outline: 1px solid #303030;
+    }
+    .submit_btn {
+      width: 95%;
+      margin-top: 0.5rem;
+      background-color: $accent;
+      border: none;
+      color: #fff;
+      outline: 1px solid $accent;
+      cursor: pointer;
+
+      &:focus {
+        outline: 1px solid #000;
+      }
+    }
+    .input {
+      padding-inline: 0.5rem;
+
+      &:focus {
+        outline: 1px solid $accent;
+      }
+    }
+
+    .label {
+      margin-bottom: 0.25rem;
+      font-weight: 500;
+      font-size: 0.85rem;
+    }
+
+    .btm_text {
+      font-size: 0.85rem;
+
+      .link {
+        margin-left: 0.3rem;
+        color: $accent;
+        font-weight: 500;
+        text-decoration: none;
+      }
+    }
+
+    .err_text {
+      font-size: 0.8rem;
+      margin-block: 0.25rem;
+      color: $accent;
+      font-weight: 500;
+    }
+
+    @media only screen and (width < $wrap-breakpoint) {
+      padding-block: 2rem;
+      height: auto;
+    }
+
+    @media only screen and (width < $wrap-breakpoint-2) {
+      width: 100vw;
+      height: auto;
+    }
+  }
+}
