@@ -37,14 +37,6 @@ export default function Login() {
       setError("Opps! Something went wrong");
       setLoading(false);
     }
-
-    // onAuthStateChanged(auth, (user) => {
-    //   if (user) {
-    //   } else {
-    //     setError("Something went wrong");
-    //   }
-    // });
-    
   }
 
   return (
