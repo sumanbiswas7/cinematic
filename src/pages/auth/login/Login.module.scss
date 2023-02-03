@@ -8,6 +8,10 @@ $wrap-breakpoint-2: 485px;
   min-width: 100vw;
   min-height: 100vh;
   @include flex-center;
+  @media only screen and (width <= $wrap-breakpoint-2) {
+    background-color: #fff;
+    align-items: flex-start;
+  }
 }
 
 .container {
@@ -104,12 +108,13 @@ $wrap-breakpoint-2: 485px;
     }
 
     .label {
-      margin-bottom: 0.25rem;
+      margin-bottom: 0.5rem;
       font-weight: 500;
       font-size: 0.85rem;
     }
 
     .btm_text {
+      margin-top: 0.5rem;
       font-size: 0.85rem;
 
       .link {
@@ -121,8 +126,8 @@ $wrap-breakpoint-2: 485px;
     }
 
     .err_text {
-      font-size: 0.8rem;
-      margin-block: 0.25rem;
+      font-size: 0.9rem;
+      margin-block: 0.5rem;
       color: $accent;
       font-weight: 500;
     }
