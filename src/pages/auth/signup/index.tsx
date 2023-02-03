@@ -44,6 +44,7 @@ export default function SignUp() {
         </div>
         <form className={styles.main_form}>
           <p className={styles.header}>Signup</p>
+          <TopRow />
           <div className={styles.inp_div}>
             <label className={styles.label} htmlFor="#email">
               Email
@@ -58,28 +59,6 @@ export default function SignUp() {
               ref={emailRef}
             />
           </div>
-          <Select
-            placeholder="India"
-            label="Country"
-            data={data}
-            searchable
-            classNames={{
-              item: styles.select_item,
-              input: styles.input,
-              label: styles.label,
-            }}
-            styles={() => ({
-              item: {
-                "&[data-selected]": {
-                  "&, &:hover": {
-                    backgroundColor: "#ff4350",
-                    color: "#fff",
-                  },
-                },
-              },
-            })}
-          />
-
           <div className={styles.inp_div}>
             <label className={styles.label} htmlFor="#password">
               Password
@@ -93,24 +72,64 @@ export default function SignUp() {
               ref={passwordRef}
             />
           </div>
-
           <button
             type="submit"
             disabled={loading}
             className={styles.submit_btn}
             onClick={handleSubmitForm}
           >
-            {loading ? <Loader size={"xs"} color={"#fff"} /> : "Login"}
+            {loading ? <Loader size={"xs"} color={"#fff"} /> : "Signup"}
           </button>
           {error && <p className={styles.err_text}>{error}</p>}
           <p className={styles.btm_text}>
-            New user?
-            <Link href="/auth/signup" className={styles.link}>
-              Sign Up
+            Already have an account?
+            <Link href="/auth/login" className={styles.link}>
+              Log In
             </Link>
           </p>
         </form>
       </div>
+    </div>
+  );
+}
+
+function TopRow() {
+  return (
+    <div className={styles.top_row}>
+      <div className={styles.inp_div}>
+        <label className={styles.label} htmlFor="#name">
+          Name
+        </label>
+        <input
+          id="#name"
+          required
+          placeholder="John Doe"
+          className={`${styles.name_input}`}
+        />
+      </div>
+      <Select
+        placeholder="India"
+        label="Country"
+        data={data}
+        searchable
+        autoComplete="nope"
+        classNames={{
+          item: styles.select_item,
+          input: `${styles.input} ${styles.input_country}`,
+          label: styles.label,
+          wrapper: styles.input_country_wrapper,
+        }}
+        styles={() => ({
+          item: {
+            "&[data-selected]": {
+              "&, &:hover": {
+                backgroundColor: "#ff4350",
+                color: "#fff",
+              },
+            },
+          },
+        })}
+      />
     </div>
   );
 }
