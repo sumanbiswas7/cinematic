@@ -5,34 +5,7 @@ import { app } from "@/firebase/firebaseConfig";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Loader, Select } from "@mantine/core";
-
-const data = [
-  {
-    image: "https://img.icons8.com/clouds/256/000000/futurama-bender.png",
-    label: "Bender Bending Rodríguez",
-    value: "Bender Bending Rodríguez",
-    description: "Fascinated with cooking",
-  },
-
-  {
-    image: "https://img.icons8.com/clouds/256/000000/futurama-mom.png",
-    label: "Carol Miller",
-    value: "Carol Miller",
-    description: "One of the richest people on Earth",
-  },
-  {
-    image: "https://img.icons8.com/clouds/256/000000/homer-simpson.png",
-    label: "Homer Simpson",
-    value: "Homer Simpson",
-    description: "Overweight, lazy, and often ignorant",
-  },
-  {
-    image: "https://img.icons8.com/clouds/256/000000/spongebob-squarepants.png",
-    label: "Spongebob Squarepants",
-    value: "Spongebob Squarepants",
-    description: "Not just a sponge",
-  },
-];
+import { data } from "@/constants/countryNames";
 
 export default function SignUp() {
   const router = useRouter();
@@ -85,6 +58,27 @@ export default function SignUp() {
               ref={emailRef}
             />
           </div>
+          <Select
+            placeholder="India"
+            label="Country"
+            data={data}
+            searchable
+            classNames={{
+              item: styles.select_item,
+              input: styles.input,
+              label: styles.label,
+            }}
+            styles={() => ({
+              item: {
+                "&[data-selected]": {
+                  "&, &:hover": {
+                    backgroundColor: "#ff4350",
+                    color: "#fff",
+                  },
+                },
+              },
+            })}
+          />
 
           <div className={styles.inp_div}>
             <label className={styles.label} htmlFor="#password">

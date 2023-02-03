@@ -67,8 +67,10 @@ $wrap-breakpoint-2: 485px;
       padding-inline: 4rem;
     }
 
-    .select_country {
-
+    .select_item {
+      &:focus {
+        background-color: $accent;
+      }
     }
 
     .header {
@@ -82,6 +84,7 @@ $wrap-breakpoint-2: 485px;
     }
     .input,
     .submit_btn {
+      transition: all 0.15s;
       width: 100%;
       height: 2.2rem;
       margin-bottom: 0.5rem;
@@ -111,6 +114,7 @@ $wrap-breakpoint-2: 485px;
     }
 
     .label {
+      font-family: inherit;
       margin-bottom: 0.5rem;
       font-weight: 500;
       font-size: 0.85rem;
@@ -145,4 +149,8 @@ $wrap-breakpoint-2: 485px;
       height: auto;
     }
   }
+}
+
+.mantine-Select-wrapper {
+  background-color: red;
 }
