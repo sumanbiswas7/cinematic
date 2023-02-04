@@ -13,8 +13,7 @@ export function NavBar() {
           <img src="/logo.svg" />
         </Link>
       </div>
-
-      <ul>
+      <ul className={styles.link_container}>
         <Link className={styles.link_con} href="/">
           <li className={getLinkClassName("/", route)}>Recent Movies</li>
         </Link>

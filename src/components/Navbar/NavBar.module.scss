@@ -1,30 +1,52 @@
 @import "../../styles/constants.scss";
 
-// navbar main container
+$bg-border: #303030;
+$outline: #3f3f3f;
+
+.logo_container {
+  background-color: $accent-dark;
+  height: $navbar-height;
+
+  .link_cont {
+    @include flex-center;
+    height: 100%;
+
+    & > img {
+      width: 40%;
+    }
+  }
+
+  margin-bottom: 2.5rem;
+}
+
 .container {
   background-color: $background-dark;
   position: fixed;
   width: $navbar-width;
   height: 100%;
+  // border-right: 1px solid $bg-border;
 
   @media only screen and (max-width: $breakpoint-mobile) {
     display: none;
   }
 
-  & > ul {
+  .link_container {
+    padding-inline: 0.5rem;
     text-decoration: none;
     list-style: none;
     padding-bottom: 2rem;
-    border-bottom: 1px solid #41444b;
+    border-bottom: 1px solid $outline;
   }
 }
 
 .logo_container {
   background-color: $accent-dark;
   height: $navbar-height;
+
   .link_cont {
     @include flex-center;
     height: 100%;
+
     & > img {
       width: 40%;
     }
@@ -41,16 +63,19 @@
   font-weight: 400;
   font-size: 0.85rem;
   color: $font-sub-1;
+  border-radius: 0.5rem;
 }
 .link_con {
   text-decoration: none;
 }
 .active {
-  background-color: #222a31;
+  // background-color: #222a31;
+  background-color: $bg-border;
   color: $accent;
 }
 
 .active::after {
+  display: none;
   content: "";
   width: 2.2rem;
   height: 0.5rem;

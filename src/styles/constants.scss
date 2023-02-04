@@ -1,8 +1,12 @@
 $accent: #ff4350;
 $accent-dark: #f83646;
 
+$bg: #23272a;
+
 $background: #222a31;
-$background-dark: #1a1c20;
+
+// $background-dark: #1a1c20;
+$background-dark: $bg;
 
 $font-main: #fff;
 $font-sub-1: #8b949b;

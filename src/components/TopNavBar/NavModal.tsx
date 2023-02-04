@@ -97,7 +97,7 @@ function ReportIssue() {
       </div>
       <div className={styles.contentbox}>
         <a
-          href="https://github.com/sumanbiswas7/cinematic"
+          href="https://github.com/sumanbiswas7/cinematic/issues/new"
           rel="noreferrer"
           target="_blank"
         >
