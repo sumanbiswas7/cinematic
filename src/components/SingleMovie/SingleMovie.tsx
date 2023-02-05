@@ -1,7 +1,7 @@
 import styles from "./SingleMovie.module.scss";
 import { RatingBox } from "./RatingBox";
 import { Tags } from "./Tags";
-import { AiOutlinePlus } from "react-icons/ai";
+import { AiOutlinePlus, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { useState, useEffect } from "react";
 
@@ -53,15 +53,27 @@ export function SingleMovie({
 
 function TopRow({ name }: { name: string }) {
   const [added, setAdded] = useState(false);
+  const [favadd, setFavAdd] = useState(false);
 
   function handleAddToWatchLater() {
     setAdded(!added);
+  }
+
+  function handleAddToFavourites() {
+    setFavAdd(!favadd);
   }
 
   return (
     <div className={styles.top_row}>
       <h2 className={styles.moviename}>{name}</h2>
       <div className={styles.top_btn_box}>
+        <button className={styles.fav_btn} onClick={handleAddToFavourites}>
+          {favadd ? (
+            <AiOutlineStar size={20} className={styles.staroutline_icon} />
+          ) : (
+            <AiFillStar size={20} className={styles.starfill_icon} />
+          )}
+        </button>
         <button className={styles.add_btn} onClick={handleAddToWatchLater}>
           {added ? (
             <MdDone size={17} className={styles.done_icon} />

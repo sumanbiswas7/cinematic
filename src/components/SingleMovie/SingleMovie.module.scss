@@ -134,11 +134,15 @@ $card-size: 18rem;
 
 // TOP ROW COMPONENT
 .top_row {
-  // background-color: red;
   @include flex-center;
+  padding-right: 1rem;
   justify-content: space-between;
 
   .top_btn_box {
+    transform: translateY(-3px);
+    @include flex-center;
+    gap: 0.5rem;
+
     .add_btn {
       $size: 1.6rem;
       height: $size;
@@ -153,6 +157,19 @@ $card-size: 18rem;
     .done_icon {
       fill: $accent;
       transform: translate(1px, 1px);
+    }
+
+    .fav_btn {
+      background-color: #fff;
+      border: none;
+    }
+    .starfill_icon {
+      transform: translate(1px, 1px);
+      fill: $accent;
+    }
+    .staroutline_icon {
+      transform: translate(1px, 1px);
+      fill: $accent;
     }
   }
 }
