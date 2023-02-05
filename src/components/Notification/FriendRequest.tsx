@@ -1,16 +1,33 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import moment from "moment";
 import styles from "./FriendRequest.module.scss";
 import Link from "next/link";
+import { useMutation } from "@apollo/client";
+import {
+  ACCEPT_REQUEST,
+  DELETE_NOTIFICATION,
+} from "@/graphql/mutations/notificationMutations";
+import { userContext } from "@/pages/_app";
 
-export function FriendRequest({ id, image, name, time }: Props) {
+export function FriendRequest({ id, image, name, time, fromId }: Props) {
   const postTime = moment(time, "MMMM Do YYYY, h:mm:ss a").fromNow();
+  const userctx = useContext(userContext);
+  const [acceptReq] = useMutation(ACCEPT_REQUEST);
+  const [deleteNotification] = useMutation(DELETE_NOTIFICATION);
   const [accepted, setAccepted] = useState(false);
   const [rejected, setRejected] = useState(false);
 
-  function handleTickClick() {
+  async function handleTickClick() {
     setAccepted(true);
+    const authuserId = userctx?.user?.id;
+    const request = {
+      from: `${name}#${fromId}`,
+      userId: authuserId,
+    };
+    acceptReq({ variables: { request } });
+    deleteNotification({ variables: { notId: id } });
   }
+
   function handleCancelClick() {
     setRejected(true);
   }
@@ -51,6 +68,7 @@ interface Props {
   image: string;
   name: string;
   time: string;
+  fromId: number;
 }
 
 function AcceptedRequest({ id, name, image }: AcceptedRequestProps) {

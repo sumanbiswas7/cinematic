@@ -28,11 +28,13 @@ export function NotificationContent({ notification }: Props) {
   else {
     const fromArr = notification.from.split("#");
     const name = fromArr[0];
-    const id = parseInt(fromArr[1]);
+    const id = notification.id;
+    const fromId = parseInt(fromArr[1]);
 
     return (
       <FriendRequest
         id={id}
+        fromId={fromId}
         key={notification.id}
         image={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${name}&scale=80`}
         name={name}
