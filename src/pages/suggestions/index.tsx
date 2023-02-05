@@ -96,7 +96,7 @@ function Suggestion({
       </Link>
       <p className={styles.from_text}>
         From:
-        <Link href={`/movies/${movieId}`} className={styles.next_link}>
+        <Link href={`/users/${userId}`} className={styles.next_link}>
           <span className={styles.username}>{userName}</span>
         </Link>
       </p>
