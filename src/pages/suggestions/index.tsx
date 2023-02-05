@@ -26,7 +26,6 @@ export default function Suggestions() {
     setSuggestions(suggestionsArr);
     setLoading(false);
   }
-
   function saveMovieSuggestions(notifications: Notifications[]) {
     const suggestionsArr: SuggestionArr[] = [];
     notifications.forEach((n) => {
@@ -95,7 +94,7 @@ function Suggestion({
         <p className={styles.moviename}>{movieName}</p>
       </Link>
       <p className={styles.from_text}>
-        From:
+        From -
         <Link href={`/users/${userId}`} className={styles.next_link}>
           <span className={styles.username}>{userName}</span>
         </Link>

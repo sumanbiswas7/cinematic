@@ -1,6 +1,9 @@
 import styles from "./SingleMovie.module.scss";
 import { RatingBox } from "./RatingBox";
 import { Tags } from "./Tags";
+import { AiOutlinePlus } from "react-icons/ai";
+import { MdDone } from "react-icons/md";
+import { useState, useEffect } from "react";
 
 export function SingleMovie({
   director,
@@ -30,7 +33,7 @@ export function SingleMovie({
 
       <div className={`${styles.right_card} ${styles.card}`}>
         <div className={styles.content}>
-          <h2>{name}</h2>
+          <TopRow name={name} />
           <p className={styles.title}>DIRECTOR</p>
           <p className={styles.text}>{director}</p>
           <p className={styles.title}>CASTS</p>
@@ -43,6 +46,29 @@ export function SingleMovie({
         <div className={styles.btm_box}>
           <Rating rating={rating} />
         </div>
+      </div>
+    </div>
+  );
+}
+
+function TopRow({ name }: { name: string }) {
+  const [added, setAdded] = useState(false);
+
+  function handleAddToWatchLater() {
+    setAdded(!added);
+  }
+
+  return (
+    <div className={styles.top_row}>
+      <h2 className={styles.moviename}>{name}</h2>
+      <div className={styles.top_btn_box}>
+        <button className={styles.add_btn} onClick={handleAddToWatchLater}>
+          {added ? (
+            <MdDone size={17} className={styles.done_icon} />
+          ) : (
+            <AiOutlinePlus size={17} className={styles.plus_icon} />
+          )}
+        </button>
       </div>
     </div>
   );
@@ -64,7 +90,6 @@ function Rating({ rating }: { rating: number }) {
     </div>
   );
 }
-
 interface SingleMovieProps {
   id: number;
   name: string;
