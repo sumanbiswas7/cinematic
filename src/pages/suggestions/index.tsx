@@ -2,6 +2,7 @@ import { NavBar } from "@/components/Navbar/NavBar";
 import { MainContent } from "@/layouts/MainContent";
 import { MovieGrid } from "@/layouts/MovieGrid/MovieGrid";
 import moment from "moment";
+import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { userContext } from "../_app";
 import styles from "./Suggestions.module.scss";
@@ -87,10 +88,17 @@ function Suggestion({
   const postTime = moment(time, "MMMM Do YYYY, h:mm:ss a").fromNow();
 
   return (
-    <div>
-      <p>{movieName}</p>
-      <p>{userName}</p>
-      <p>{postTime}</p>
+    <div className={styles.suggestion_container}>
+      <Link href={`/movies/${movieId}`} className={styles.next_link}>
+        <p className={styles.moviename}>{movieName}</p>
+      </Link>
+      <p className={styles.from_text}>
+        From:
+        <Link href={`/movies/${movieId}`} className={styles.next_link}>
+          <span className={styles.username}>{userName}</span>
+        </Link>
+      </p>
+      <p className={styles.time}>{postTime}</p>
     </div>
   );
 }
