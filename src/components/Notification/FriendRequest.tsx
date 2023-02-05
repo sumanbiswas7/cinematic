@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import moment from "moment";
 import styles from "./FriendRequest.module.scss";
 import Link from "next/link";
@@ -12,20 +12,44 @@ import { userContext } from "@/pages/_app";
 export function FriendRequest({ id, image, name, time, fromId }: Props) {
   const postTime = moment(time, "MMMM Do YYYY, h:mm:ss a").fromNow();
   const userctx = useContext(userContext);
-  const [acceptReq] = useMutation(ACCEPT_REQUEST);
+  const [acceptRequest] = useMutation(ACCEPT_REQUEST);
   const [deleteNotification] = useMutation(DELETE_NOTIFICATION);
   const [accepted, setAccepted] = useState(false);
   const [rejected, setRejected] = useState(false);
 
+  useEffect(() => {
+    // Keeping request accepted if already a friend
+    const user = userctx?.user;
+    const from = `${name}#${fromId}`;
+    const existingFriends = user?.friends;
+    if (existingFriends?.includes(from)) setAccepted(true);
+  }, []);
+
   async function handleTickClick() {
     setAccepted(true);
+    const user = userctx?.user;
+    const setUser = userctx?.setUser!;
     const authuserId = userctx?.user?.id;
+    const from = `${name}#${fromId}`;
     const request = {
-      from: `${name}#${fromId}`,
+      from,
       userId: authuserId,
     };
-    acceptReq({ variables: { request } });
+
+    // Checking if friend exists already
+    const existingFriends = user?.friends;
+    if (existingFriends?.includes(from)) return;
+
+    // Performing database mutations
+    acceptRequest({ variables: { request } });
     deleteNotification({ variables: { notId: id } });
+
+    // Changing local states
+    const newFriends = [...(user?.friends || []), from];
+    const newUser: any = Object.assign({}, userctx?.user, {
+      friends: newFriends,
+    });
+    setUser(newUser);
   }
 
   function handleCancelClick() {
