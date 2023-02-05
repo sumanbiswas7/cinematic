@@ -70,7 +70,7 @@ export default function Suggestions() {
             })
           ) : (
             <p className={styles.nosuggestion_text}>
-              You don't have any suggestions 😔
+              You don&apos;t have any suggestions 😔
             </p>
           )}
         </MovieGrid>

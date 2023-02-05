@@ -52,13 +52,12 @@ export function SingleMovie({
 }
 
 function TopRow({ name }: { name: string }) {
-  const [added, setAdded] = useState(false);
+  const [watchadd, setWatchadd] = useState(false);
   const [favadd, setFavAdd] = useState(false);
 
   function handleAddToWatchLater() {
-    setAdded(!added);
+    setWatchadd(!watchadd);
   }
-
   function handleAddToFavourites() {
     setFavAdd(!favadd);
   }
@@ -69,13 +68,13 @@ function TopRow({ name }: { name: string }) {
       <div className={styles.top_btn_box}>
         <button className={styles.fav_btn} onClick={handleAddToFavourites}>
           {favadd ? (
-            <AiOutlineStar size={20} className={styles.staroutline_icon} />
-          ) : (
             <AiFillStar size={20} className={styles.starfill_icon} />
+          ) : (
+            <AiOutlineStar size={20} className={styles.staroutline_icon} />
           )}
         </button>
         <button className={styles.add_btn} onClick={handleAddToWatchLater}>
-          {added ? (
+          {watchadd ? (
             <MdDone size={17} className={styles.done_icon} />
           ) : (
             <AiOutlinePlus size={17} className={styles.plus_icon} />
