@@ -1,11 +1,11 @@
 @import "../../styles/constants.scss";
 
-.suggestion_container {
-  $bg: #23272a;
-  $bg-border: #303030;
-  $outline: #3f3f3f;
-  $text: #b9b9b9;
+$bg: #23272a;
+$bg-border: #303030;
+$outline: #3f3f3f;
+$text: #b9b9b9;
 
+.suggestion_container {
   @include flex-center;
   flex-direction: column;
   background-color: $bg;
@@ -37,4 +37,11 @@
     font-size: 0.7rem;
     margin-top: 0.25rem;
   }
+}
+
+.nosuggestion_text {
+  color: $text;
+  min-width: 17rem;
+  font-weight: 300;
+  font-size: 1.1rem;
 }
