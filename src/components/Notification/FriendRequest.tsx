@@ -54,6 +54,8 @@ export function FriendRequest({ id, image, name, time, fromId }: Props) {
 
   function handleCancelClick() {
     setRejected(true);
+    // Performing database mutations
+    deleteNotification({ variables: { notId: id } });
   }
 
   if (accepted) {
