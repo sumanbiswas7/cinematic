@@ -24,7 +24,7 @@ export default function WatchLater() {
   return (
     <>
       <NavBar />
-      <MainContent title="Favourites" isLoading={loading}>
+      <MainContent title="Watch Later" isLoading={loading}>
         <MovieGrid>
           {movies.length ? (
             movies.map((m: Movie) => {
