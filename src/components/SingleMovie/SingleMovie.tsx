@@ -63,7 +63,26 @@ function TopRow({ name, movie }: TopRowProps) {
   const [watchadd, setWatchadd] = useState(false);
   const [favadd, setFavAdd] = useState(false);
 
-  function handleAddToWatchLater() {
+  useEffect(() => {
+    handleFirstLoad();
+  }, []);
+
+  function handleFirstLoad() {
+    const wmovies = localStorage.getItem("watchlater");
+    const fmovies = localStorage.getItem("favourites");
+    if (wmovies) {
+      const parsed = JSON.parse(wmovies);
+      const isExists = parsed.some((m: Movie) => m.name == movie.name);
+      if (isExists) setWatchadd(true);
+    }
+    if (fmovies) {
+      const parsed = JSON.parse(fmovies);
+      const isExists = parsed.some((m: Movie) => m.name == movie.name);
+      if (isExists) setFavAdd(true);
+    }
+  }
+
+  async function handleAddToWatchLater() {
     setWatchadd(!watchadd);
     if (!watchadd) {
       notify(
@@ -71,12 +90,14 @@ function TopRow({ name, movie }: TopRowProps) {
         `${name} has been added to watch later`,
         "green"
       );
+      await moviesToLocalStorage(movie, "add", "watchlater");
     } else {
       notify(
         "Removed from Watch Later",
         `${name} has been removed from watch later`,
         "red"
       );
+      await moviesToLocalStorage(movie, "remove", "watchlater");
     }
   }
   async function handleAddToFavourites() {
@@ -97,6 +118,7 @@ function TopRow({ name, movie }: TopRowProps) {
       await moviesToLocalStorage(movie, "remove", "favourites");
     }
   }
+
   function notify(title: string, message: string, color: string) {
     showNotification({
       autoClose: 1500,
@@ -105,7 +127,6 @@ function TopRow({ name, movie }: TopRowProps) {
       color,
     });
   }
-
   async function moviesToLocalStorage(movie: Movie, action: Action, key: Key) {
     const prevmovies = localStorage.getItem(key);
     const parsedMovies = JSON.parse(prevmovies || "[]");
