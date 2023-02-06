@@ -18,6 +18,13 @@ export function SingleMovie({
 }: SingleMovieProps) {
   const CASTS = "Leonardo Dicaprio,Jamie Fox";
   const CASTS_C = CASTS.split(",");
+  const movie = {
+    id: 2,
+    rating,
+    name,
+    image,
+    type,
+  };
 
   return (
     <div className={styles.container}>
@@ -34,7 +41,7 @@ export function SingleMovie({
 
       <div className={`${styles.right_card} ${styles.card}`}>
         <div className={styles.content}>
-          <TopRow name={name} />
+          <TopRow name={name} movie={movie} />
           <p className={styles.title}>DIRECTOR</p>
           <p className={styles.text}>{director}</p>
           <p className={styles.title}>CASTS</p>
@@ -52,7 +59,7 @@ export function SingleMovie({
   );
 }
 
-function TopRow({ name }: { name: string }) {
+function TopRow({ name, movie }: TopRowProps) {
   const [watchadd, setWatchadd] = useState(false);
   const [favadd, setFavAdd] = useState(false);
 
@@ -72,7 +79,7 @@ function TopRow({ name }: { name: string }) {
       );
     }
   }
-  function handleAddToFavourites() {
+  async function handleAddToFavourites() {
     setFavAdd(!favadd);
     if (!favadd) {
       notify(
@@ -80,12 +87,14 @@ function TopRow({ name }: { name: string }) {
         `${name} has been added to favourites`,
         "green"
       );
+      await moviesToLocalStorage(movie, "add", "favourites");
     } else {
       notify(
         "Removed from Favourites",
         `${name} has been removed from favourites`,
         "red"
       );
+      await moviesToLocalStorage(movie, "remove", "favourites");
     }
   }
   function notify(title: string, message: string, color: string) {
@@ -95,6 +104,22 @@ function TopRow({ name }: { name: string }) {
       message,
       color,
     });
+  }
+
+  async function moviesToLocalStorage(movie: Movie, action: Action, key: Key) {
+    const prevmovies = localStorage.getItem(key);
+    const parsedMovies = JSON.parse(prevmovies || "[]");
+    if (action == "add") {
+      const isExists = parsedMovies.some((m: Movie) => m.name == movie.name);
+      if (isExists) return;
+      parsedMovies.push(movie);
+      const newMovies = JSON.stringify(parsedMovies);
+      localStorage.setItem(key, newMovies);
+    } else {
+      const newMovies = parsedMovies.filter((m: Movie) => m.name != movie.name);
+      const newMoviesStr = JSON.stringify(newMovies);
+      localStorage.setItem(key, newMoviesStr);
+    }
   }
 
   return (
@@ -119,6 +144,19 @@ function TopRow({ name }: { name: string }) {
     </div>
   );
 }
+interface TopRowProps {
+  name: string;
+  movie: Movie;
+}
+interface Movie {
+  id: number;
+  rating: number;
+  name: string;
+  image: string;
+  type: string;
+}
+type Action = "add" | "remove";
+type Key = "favourites" | "watchlater";
 
 function Rating({ rating }: { rating: number }) {
   const ratingNum = parseFloat(rating.toString()).toFixed(1);
