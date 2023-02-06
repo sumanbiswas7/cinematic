@@ -15,11 +15,12 @@ export function SingleMovie({
   image,
   type,
   casts,
+  id,
 }: SingleMovieProps) {
   const CASTS = "Leonardo Dicaprio,Jamie Fox";
   const CASTS_C = CASTS.split(",");
   const movie = {
-    id: 2,
+    id,
     rating,
     name,
     image,
