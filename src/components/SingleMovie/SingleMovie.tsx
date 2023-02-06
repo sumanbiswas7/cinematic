@@ -4,6 +4,7 @@ import { Tags } from "./Tags";
 import { AiOutlinePlus, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { useState, useEffect } from "react";
+import { showNotification } from "@mantine/notifications";
 
 export function SingleMovie({
   director,
@@ -57,9 +58,43 @@ function TopRow({ name }: { name: string }) {
 
   function handleAddToWatchLater() {
     setWatchadd(!watchadd);
+    if (!watchadd) {
+      notify(
+        "Added to Watch Later",
+        `${name} has been added to watch later`,
+        "green"
+      );
+    } else {
+      notify(
+        "Removed from Watch Later",
+        `${name} has been removed from watch later`,
+        "red"
+      );
+    }
   }
   function handleAddToFavourites() {
     setFavAdd(!favadd);
+    if (!favadd) {
+      notify(
+        "Added to Favourites",
+        `${name} has been added to favourites`,
+        "green"
+      );
+    } else {
+      notify(
+        "Removed from Favourites",
+        `${name} has been removed from favourites`,
+        "red"
+      );
+    }
+  }
+  function notify(title: string, message: string, color: string) {
+    showNotification({
+      autoClose: 1500,
+      title,
+      message,
+      color,
+    });
   }
 
   return (
@@ -75,9 +110,9 @@ function TopRow({ name }: { name: string }) {
         </button>
         <button className={styles.add_btn} onClick={handleAddToWatchLater}>
           {watchadd ? (
-            <MdDone size={17} className={styles.done_icon} />
+            <MdDone size={20} className={styles.done_icon} />
           ) : (
-            <AiOutlinePlus size={17} className={styles.plus_icon} />
+            <AiOutlinePlus size={20} className={styles.plus_icon} />
           )}
         </button>
       </div>

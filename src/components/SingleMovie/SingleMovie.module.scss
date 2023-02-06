@@ -149,6 +149,7 @@ $card-size: 18rem;
       width: $size;
       border-radius: 50%;
       border: 1px solid $background-dark;
+      border: none;
       background-color: #fff;
     }
     .plus_icon {
@@ -169,7 +170,7 @@ $card-size: 18rem;
     }
     .staroutline_icon {
       transform: translate(1px, 1px);
-      fill: $accent;
+      // fill: $accent;
     }
   }
 }
