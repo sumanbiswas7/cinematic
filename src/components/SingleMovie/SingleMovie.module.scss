@@ -86,16 +86,59 @@ $card-size: 18rem;
       font-weight: 400;
       margin-bottom: 0.5rem;
     }
-    .release_year {
-      font-size: 1.3rem;
-      color: $background-dark;
+  }
+}
+
+// BOTTOM ROW
+.btm_row_container {
+  @include flex-center;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-inline: 1.5rem;
+
+  .title {
+    // margin-top: 0.8rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+    color: $accent;
+  }
+  .release_year {
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: $background-dark;
+  }
+}
+
+// POSTED BY USER
+.next_link {
+  text-decoration: none;
+}
+.user_box {
+  @include flex-center;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+  .userimg {
+    width: 1.8rem;
+    height: 1.8rem;
+    border-radius: 50%;
+  }
+  &_content {
+    & > .name {
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #1d2023;
+    }
+    & > .time {
+      color: #545454;
+      font-size: 0.65rem;
     }
   }
 }
 
 .btm_box {
   width: 100%;
-  height: 25%;
+  height: 23%;
   background-color: $accent;
   border-bottom-right-radius: 0.2rem;
   border-bottom-left-radius: 0.2rem;

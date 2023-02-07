@@ -24,6 +24,11 @@ query ($movieId: Int!) {
     description
     director
     casts
+    createdAt
+    user {
+      id
+      name
+    }
   }
 }
 `

@@ -5,6 +5,9 @@ import { AiOutlinePlus, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { useState, useEffect } from "react";
 import { showNotification } from "@mantine/notifications";
+import { avatarStyle } from "@/constants/diceBearStyle";
+import Link from "next/link";
+import moment from "moment";
 
 export function SingleMovie({
   director,
@@ -16,6 +19,8 @@ export function SingleMovie({
   type,
   casts,
   id,
+  user,
+  createdAt,
 }: SingleMovieProps) {
   const CASTS = "Leonardo Dicaprio,Jamie Fox";
   const CASTS_C = CASTS.split(",");
@@ -26,6 +31,7 @@ export function SingleMovie({
     image,
     type,
   };
+  const time = moment(createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
 
   return (
     <div className={styles.container}>
@@ -49,9 +55,13 @@ export function SingleMovie({
           <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
           <p className={styles.title}>TYPE</p>
           <Tags data={[type]} />
-          <p className={styles.title}>RELEASE YEAR</p>
-          <h2 className={styles.release_year}>{release}</h2>
         </div>
+        <BottomRow
+          release={release}
+          name={user.name}
+          userId={user.id}
+          time={time}
+        />
         <div className={styles.btm_box}>
           <Rating rating={rating} />
         </div>
@@ -166,6 +176,39 @@ function TopRow({ name, movie }: TopRowProps) {
     </div>
   );
 }
+
+function BottomRow({ release, name, time, userId }: BottomRowProps) {
+  return (
+    <div className={styles.btm_row_container}>
+      <div>
+        <p className={styles.title}>RELEASE YEAR</p>
+        <h2 className={styles.release_year}>{release}</h2>
+      </div>
+      <div>
+        <p className={styles.title}>POSTED BY</p>
+        <Link href={`/users/${userId}`} className={styles.next_link}>
+          <div className={styles.user_box}>
+            <img
+              className={styles.userimg}
+              src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${name}&scale=80`}
+            />
+            <div className={styles.user_box_content}>
+              <p className={styles.name}>{name}</p>
+              <p className={styles.time}>{time}</p>
+            </div>
+          </div>
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+interface BottomRowProps {
+  userId: number;
+  name: string;
+  release: string;
+  time: string;
+}
 interface TopRowProps {
   name: string;
   movie: Movie;
@@ -206,4 +249,9 @@ interface SingleMovieProps {
   release: string;
   director: string;
   casts: string;
+  createdAt: string;
+  user: {
+    id: number;
+    name: string;
+  };
 }

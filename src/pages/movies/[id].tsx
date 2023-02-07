@@ -35,6 +35,8 @@ export default function MovieById() {
             type={movie.type}
             key={movie.id}
             casts={movie.casts}
+            user={movie.user}
+            createdAt={movie.createdAt}
           />
         </div>
       </MainContent>
@@ -52,4 +54,9 @@ interface Movie {
   release: string;
   director: string;
   casts: string;
+  createdAt: string;
+  user: {
+    id: number;
+    name: string;
+  };
 }
