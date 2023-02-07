@@ -1,8 +1,9 @@
 import { avatarStyle } from "@/constants/diceBearStyle";
-import { UserType } from "@/pages/_app";
+import { userContext, UserType } from "@/pages/_app";
 import moment from "moment";
 import styles from "./User.module.scss";
 import { UserMovie } from "./UserMovie";
+import { useContext } from "react";
 
 export function User({ user }: Props) {
   const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
@@ -15,7 +16,7 @@ export function User({ user }: Props) {
           src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${user?.name}&scale=80`}
         />
         <h2 className={styles.name}>{user?.name}</h2>
-        <MidContent country={user.country} />
+        <MidContent country={user.country} username={user.name} />
         <p className={styles.joined}>Joined {joined}</p>
       </div>
       <p className={styles.movies_count}>Movies: {user?.movies.length}</p>
@@ -37,10 +38,15 @@ export function User({ user }: Props) {
   );
 }
 
-function MidContent({ country }: MidContentProps) {
+function MidContent({ country, username }: MidContentProps) {
+  const userctx = useContext(userContext);
+  const authusername = userctx?.user?.name;
+
   return (
     <div className={styles.mid_container}>
-      <button className={styles.add_firend_btn}>Add Friend</button>
+      {authusername !== username && (
+        <button className={styles.add_firend_btn}>Add Friend</button>
+      )}
       {country && <div className={styles.country_box}>{country}</div>}
     </div>
   );
@@ -51,4 +57,5 @@ interface Props {
 }
 interface MidContentProps {
   country?: string;
+  username: string;
 }
