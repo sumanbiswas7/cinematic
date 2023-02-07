@@ -5,6 +5,7 @@ import styles from "./User.module.scss";
 import { UserMovie } from "./UserMovie";
 import { useContext } from "react";
 import { showNotification } from "@mantine/notifications";
+import { useRouter } from "next/router";
 
 export function User({ user }: Props) {
   const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
@@ -17,7 +18,11 @@ export function User({ user }: Props) {
           src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${user?.name}&scale=80`}
         />
         <h2 className={styles.name}>{user?.name}</h2>
-        <MidContent country={user.country} username={user.name} />
+        <MidContent
+          country={user.country}
+          username={user.name}
+          userId={user.id}
+        />
         <p className={styles.joined}>Joined {joined}</p>
       </div>
       <p className={styles.movies_count}>Movies: {user?.movies.length}</p>
@@ -39,7 +44,7 @@ export function User({ user }: Props) {
   );
 }
 
-function MidContent({ country, username }: MidContentProps) {
+function MidContent({ country, username, userId }: MidContentProps) {
   const userctx = useContext(userContext);
   const authusername = userctx?.user?.name;
 
@@ -64,20 +69,43 @@ function MidContent({ country, username }: MidContentProps) {
 
   return (
     <div className={styles.mid_container}>
-      {authusername !== username && (
-        <button onClick={handleAddFriend} className={styles.add_firend_btn}>
-          Add Friend
-        </button>
-      )}
+      <Friend />
       {country && <div className={styles.country_box}>{country}</div>}
     </div>
   );
+
+  function Friend() {
+    // USER DOESN'T EXISTS
+    const route = useRouter().route;
+    if (route.includes("/profile")) return null;
+    
+    if (!authusername) {
+      return (
+        <button onClick={handleAddFriend} className={styles.add_firend_btn}>
+          Add Friend
+        </button>
+      );
+    }
+    // USER EXISTS
+    if (authusername) {
+      if (userctx?.user?.friends.includes(`${username}#${userId}`)) {
+        return <button className={styles.add_firend_btn}>Friends</button>;
+      }
+      if (authusername !== username) return null;
+    }
+    return (
+      <button onClick={handleAddFriend} className={styles.add_firend_btn}>
+        Add Friend
+      </button>
+    );
+  }
 }
 
 interface Props {
   user: UserType;
 }
 interface MidContentProps {
+  userId: number;
   country?: string;
   username: string;
 }
