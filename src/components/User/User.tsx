@@ -15,9 +15,7 @@ export function User({ user }: Props) {
           src={`https://api.dicebear.com/5.x/${avatarStyle}/svg?seed=${user?.name}&scale=80`}
         />
         <h2 className={styles.name}>{user?.name}</h2>
-        {user?.country && (
-          <p className={styles.country}>Country: {user.country}</p>
-        )}
+        <MidContent country={user.country} />
         <p className={styles.joined}>Joined {joined}</p>
       </div>
       <p className={styles.movies_count}>Movies: {user?.movies.length}</p>
@@ -39,6 +37,18 @@ export function User({ user }: Props) {
   );
 }
 
+function MidContent({ country }: MidContentProps) {
+  return (
+    <div className={styles.mid_container}>
+      <button className={styles.add_firend_btn}>Add Friend</button>
+      {country && <div className={styles.country_box}>{country}</div>}
+    </div>
+  );
+}
+
 interface Props {
   user: UserType;
+}
+interface MidContentProps {
+  country?: string;
 }

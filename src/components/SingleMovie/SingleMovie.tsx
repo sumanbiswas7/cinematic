@@ -22,6 +22,7 @@ export function SingleMovie({
   user,
   createdAt,
 }: SingleMovieProps) {
+  const time = moment(createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
   const CASTS = "Leonardo Dicaprio,Jamie Fox";
   const CASTS_C = CASTS.split(",");
   const movie = {
@@ -31,7 +32,6 @@ export function SingleMovie({
     image,
     type,
   };
-  const time = moment(createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
 
   return (
     <div className={styles.container}>

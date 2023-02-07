@@ -1,7 +1,6 @@
 @import "../../styles/constants.scss";
 
 .container {
-  //   background-color: yellow;
   padding-inline: 1rem;
 }
 
@@ -21,7 +20,8 @@
 }
 .name {
   font-weight: 400;
-  margin-bottom: 0.35rem;
+  font-size: 1.85rem;
+  margin-bottom: 0.5rem;
   color: #fff;
 }
 .country {
@@ -30,8 +30,9 @@
   color: #bcbcbc;
 }
 .joined {
-  color: #4a545b;
+  color: #bcbcbc;
   font-size: 0.8rem;
+  margin-top: 0.5rem;
 }
 
 .movies_count {
@@ -49,7 +50,6 @@
   justify-content: flex-start;
   background-color: #23272b;
   margin-bottom: 0.5rem;
-  //   width: 30rem;
   height: 10rem;
 }
 .content_container {
@@ -82,4 +82,34 @@
 }
 .link_container {
   text-decoration: none;
+}
+
+// MID CONTENT
+.mid_container {
+  @include flex-center;
+  gap: 0.5rem;
+
+  $height: 1.5rem;
+  .add_firend_btn {
+    @include flex-center;
+    border: none;
+    background-color: $accent;
+    height: $height;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    padding-inline: 0.5rem;
+    border-radius: 0.2rem;
+  }
+
+  .country_box {
+    @include flex-center;
+    font-size: 0.8rem;
+    font-family: inherit;
+    background-color: #fff;
+    height: $height;
+    font-weight: 500;
+    padding-inline: 0.5rem;
+    border-radius: 0.2rem;
+  }
 }
