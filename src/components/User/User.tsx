@@ -4,6 +4,7 @@ import moment from "moment";
 import styles from "./User.module.scss";
 import { UserMovie } from "./UserMovie";
 import { useContext } from "react";
+import { showNotification } from "@mantine/notifications";
 
 export function User({ user }: Props) {
   const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
@@ -42,10 +43,31 @@ function MidContent({ country, username }: MidContentProps) {
   const userctx = useContext(userContext);
   const authusername = userctx?.user?.name;
 
+  async function handleAddFriend() {
+    if (!authusername) {
+      return notify(
+        "Please Login or Signup",
+        "You must create an account or login to your older one to send a friend request",
+        "orange"
+      );
+    }
+  }
+
+  function notify(title: string, message: string, color: string) {
+    showNotification({
+      autoClose: 1500,
+      title,
+      message,
+      color,
+    });
+  }
+
   return (
     <div className={styles.mid_container}>
       {authusername !== username && (
-        <button className={styles.add_firend_btn}>Add Friend</button>
+        <button onClick={handleAddFriend} className={styles.add_firend_btn}>
+          Add Friend
+        </button>
       )}
       {country && <div className={styles.country_box}>{country}</div>}
     </div>
