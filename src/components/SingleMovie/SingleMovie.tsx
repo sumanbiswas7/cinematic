@@ -23,8 +23,9 @@ export function SingleMovie({
   createdAt,
 }: SingleMovieProps) {
   const time = moment(createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
-  const CASTS = "Leonardo Dicaprio,Jamie Fox";
-  const CASTS_C = CASTS.split(",");
+  const castsArr = casts.split("#");
+  const typesArr = type.split("#");
+
   const movie = {
     id,
     rating,
@@ -52,9 +53,9 @@ export function SingleMovie({
           <p className={styles.title}>DIRECTOR</p>
           <p className={styles.text}>{director}</p>
           <p className={styles.title}>CASTS</p>
-          <Tags data={["Matthew McConaughey", "Jessica Chastain"]} />
+          <Tags data={castsArr} />
           <p className={styles.title}>TYPE</p>
-          <Tags data={[type]} />
+          <Tags data={typesArr} />
         </div>
         <BottomRow
           release={release}

@@ -17,7 +17,6 @@ export default function WatchLater() {
     const moviesString = localStorage.getItem("watchlater");
     const parsedMovies = JSON.parse(moviesString || "[]");
     setMovies(parsedMovies);
-    console.log(parsedMovies);
     setLoading(false);
   }
 
