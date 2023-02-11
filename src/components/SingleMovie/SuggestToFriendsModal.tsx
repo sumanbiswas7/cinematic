@@ -1,5 +1,7 @@
 import { avatarStyle } from "@/constants/diceBearStyle";
+import { SEND_SUGGESTION } from "@/graphql/mutations/notificationMutations";
 import { userContext } from "@/pages/_app";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import { showNotification } from "@mantine/notifications";
 import { useState, useEffect, useContext } from "react";
 import styles from "./SuggestToFriendsModal.module.scss";
@@ -41,14 +43,26 @@ interface Movie {
 }
 
 function Friend({ friend, movie }: FriendProps) {
+  const userctx = useContext(userContext);
+  const user = userctx?.user;
   const friendArr = friend.split("#");
+  const [sendSuggestion] = useMutation(SEND_SUGGESTION);
 
   async function handleSendSuggestion() {
     showNotification({
       autoClose: 1500,
       title: `Movie Suggested`,
-      message: `${movie.name} suggested to your friend ${friendArr[0]}`,
+      message: `Suggested ${movie.name} to your friend ${friendArr[0]}`,
       color: "cyan",
+    });
+    const from = `${user?.name}#${user?.id}#${movie.name}#${movie.id}`;
+    sendSuggestion({
+      variables: {
+        suggestion: {
+          from,
+          userId: parseInt(friendArr[1]),
+        },
+      },
     });
   }
 

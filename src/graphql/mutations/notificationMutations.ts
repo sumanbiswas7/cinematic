@@ -5,7 +5,6 @@ mutation ($request: AcceptRequest!) {
   accept_request(request: $request)
 }
 `
-
 export const DELETE_NOTIFICATION = gql`
 mutation ($notId: Int!) {
   delete_notification(notId: $notId)
@@ -14,5 +13,10 @@ mutation ($notId: Int!) {
 export const SEND_REQUEST = gql`
 mutation ($request: NotificationInput!) {
   send_request(request: $request)
+}
+`
+export const SEND_SUGGESTION = gql`
+mutation ($suggestion: NotificationInput!) {
+  send_suggestion(suggestion: $suggestion)
 }
 `
