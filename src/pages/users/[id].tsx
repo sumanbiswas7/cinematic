@@ -3,6 +3,7 @@ import { GET_USER } from "@/graphql/queries/userQueries";
 import { useQuery } from "@apollo/client";
 import { User } from "@/components/User/User";
 import { useRouter } from "next/router";
+import { TopNavBar } from "@/components/TopNavBar/TopNavBar";
 
 export default function UserById() {
   const router = useRouter();
@@ -14,5 +15,10 @@ export default function UserById() {
   if (res.loading) return <h1>Loading</h1>;
   if (res.error) return <h1>Error</h1>;
 
-  return <User user={res.data.get_user!} />;
+  return (
+    <>
+      {/* <TopNavBar /> */}
+      <User user={res.data.get_user!} />
+    </>
+  );
 }

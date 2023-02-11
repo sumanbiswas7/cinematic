@@ -11,4 +11,8 @@ mutation ($notId: Int!) {
   delete_notification(notId: $notId)
 }
 `
-
+export const SEND_REQUEST = gql`
+mutation ($request: NotificationInput!) {
+  send_request(request: $request)
+}
+`

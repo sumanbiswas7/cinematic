@@ -6,6 +6,8 @@ import { UserMovie } from "./UserMovie";
 import { useContext } from "react";
 import { showNotification } from "@mantine/notifications";
 import { useRouter } from "next/router";
+import { useMutation } from "@apollo/client";
+import { SEND_REQUEST } from "@/graphql/mutations/notificationMutations";
 
 export function User({ user }: Props) {
   const joined = moment(user?.createdAt, "MMMM Do YYYY, h:mm:ss a").fromNow();
@@ -47,6 +49,7 @@ export function User({ user }: Props) {
 function MidContent({ country, username, userId }: MidContentProps) {
   const userctx = useContext(userContext);
   const authusername = userctx?.user?.name;
+  const [sendRequest] = useMutation(SEND_REQUEST);
 
   async function handleAddFriend() {
     if (!authusername) {
@@ -56,6 +59,23 @@ function MidContent({ country, username, userId }: MidContentProps) {
         "orange"
       );
     }
+    if (userctx.user?.friends.includes(`${username}#${userId}`)) {
+      return notify(
+        "Already Friends",
+        `You and ${username} are already friends`,
+        "orange"
+      );
+    }
+    const request = {
+      from: `${authusername}#${userctx.user?.id}`,
+      userId,
+    };
+    sendRequest({ variables: { request } });
+    return notify(
+      "Request Sent",
+      "Friend request sent successfully",
+      "green"
+    );
   }
 
   function notify(title: string, message: string, color: string) {
@@ -78,14 +98,12 @@ function MidContent({ country, username, userId }: MidContentProps) {
     // USER DOESN'T EXISTS
     const route = useRouter().route;
     if (route.includes("/profile")) return null;
-    
-    if (!authusername) {
-      return (
-        <button onClick={handleAddFriend} className={styles.add_firend_btn}>
-          Add Friend
-        </button>
-      );
-    }
+
+    return (
+      <button onClick={handleAddFriend} className={styles.add_firend_btn}>
+        Add Friend
+      </button>
+    );
     // USER EXISTS
     if (authusername) {
       if (userctx?.user?.friends.includes(`${username}#${userId}`)) {

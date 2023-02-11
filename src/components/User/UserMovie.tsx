@@ -4,6 +4,7 @@ import styles from "./UserMovie.module.scss";
 export function UserMovie({ id, image, name, rating, type }: MovieProps) {
   const ratingNum = parseFloat(rating.toString()).toFixed(1);
   const ratingColor = setRatingColor(rating);
+  const typeArr = type.split("#");
 
   return (
     <Link className={styles.link_container} href={`/movies/${id}`}>
@@ -11,7 +12,7 @@ export function UserMovie({ id, image, name, rating, type }: MovieProps) {
         <img src={image} className={styles.movieimg} />
         <div className={styles.content_container}>
           <h2>{name}</h2>
-          <p>{type}</p>
+          <p>{typeArr[0]}</p>
           <span
             className={styles.rating_box}
             style={{ backgroundColor: ratingColor }}

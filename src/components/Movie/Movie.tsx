@@ -5,7 +5,7 @@ export function Movie({ imageUrl, name, type, rating, id }: Props) {
   const ratingNum = parseFloat(rating.toString()).toFixed(1);
   const ratingColor = setRatingColor(rating);
   const movieName = getMovieName(name);
-
+  const typeArr = type.split("#");
   return (
     <div className={styles.container}>
       <Link href={`/movies/${id}`}>
@@ -15,7 +15,7 @@ export function Movie({ imageUrl, name, type, rating, id }: Props) {
       <div className={styles.bottom_container}>
         <div>
           <p className={styles.name}>{movieName}</p>
-          <p className={styles.type}>{type}</p>
+          <p className={styles.type}>{typeArr[0]}</p>
         </div>
         <span style={{ backgroundColor: ratingColor }}>{ratingNum}</span>
       </div>

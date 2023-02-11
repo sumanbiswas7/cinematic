@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import styles from "./MainContent.module.scss";
 import { Loader as CLoader } from "../components/Loader/Loader";
-import Link from "next/link";
-import { NavMobileBtn } from "@/components/Navbar/NavMobileBtn";
 import { userContext } from "@/pages/_app";
 import { app } from "@/firebase/firebaseConfig";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { useLazyQuery } from "@apollo/client";
 import { GET_AUTH_USER } from "@/graphql/queries/userQueries";
-import { avatarStyle } from "@/constants/diceBearStyle";
 import { TopNavBar } from "@/components/TopNavBar/TopNavBar";
 
 export function MainContent({ children, isLoading, title }: Props) {
