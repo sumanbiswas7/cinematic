@@ -105,7 +105,10 @@ function TopRow({ name, movie }: TopRowProps) {
         )}
       </button>
       {suggestModal && (
-        <SuggestToFriendsModal onClose={handleCloseSuggestModal} />
+        <SuggestToFriendsModal
+          movie={movie}
+          onClose={handleCloseSuggestModal}
+        />
       )}
     </div>
   );

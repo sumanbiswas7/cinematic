@@ -14,6 +14,7 @@
   left: 0;
   @include flex-center;
   animation: fade-in 0.2s;
+  z-index: 99;
 }
 @keyframes fade-in {
   0% {
@@ -24,12 +25,52 @@
   }
 }
 
+$bg: #23272a;
+$bg-border: #303030;
+$outline: #3f3f3f;
+$icon: #b9b9b9;
+
 .mid_container {
-  width: 20rem;
-  height: 10rem;
-  background-color: rebeccapurple;
+  height: 25rem;
+  min-width: 20rem;
+  background-color: $bg;
+  border-radius: 0.2rem;
+  z-index: 99;
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+  padding: 1rem;
+}
+
+.friend_box {
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  @include flex-center;
+  justify-content: flex-start;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+  .name {
+    color: #fff;
+    font-size: 1.1rem;
+    margin-left: 1rem;
+  }
+
+  .userimg {
+    border-radius: 50%;
+    width: 3rem;
+    height: 3rem;
+  }
+
+  &:hover {
+    background-color: $outline;
+  }
+}
+
+.no_firends {
+  color: #fff;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: 300;
 }
