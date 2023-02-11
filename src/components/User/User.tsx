@@ -21,9 +21,9 @@ export function User({ user }: Props) {
         />
         <h2 className={styles.name}>{user?.name}</h2>
         <MidContent
-          country={user.country}
-          username={user.name}
-          userId={user.id}
+          country={user?.country}
+          username={user?.name}
+          userId={user?.id}
         />
         <p className={styles.joined}>Joined {joined}</p>
       </div>
@@ -99,10 +99,16 @@ function MidContent({ country, username, userId }: MidContentProps) {
       ? true
       : false;
 
+    const isOwner = userctx?.user?.name == username ? true : false;
+
     // USER EXISTS
     if (isFriend) {
       return <button className={styles.add_firend_btn}>Friends</button>;
     }
+    if (isOwner) {
+      return null;
+    }
+
     return (
       <button onClick={handleAddFriend} className={styles.add_firend_btn}>
         Add Friend
