@@ -71,11 +71,7 @@ function MidContent({ country, username, userId }: MidContentProps) {
       userId,
     };
     sendRequest({ variables: { request } });
-    return notify(
-      "Request Sent",
-      "Friend request sent successfully",
-      "green"
-    );
+    return notify("Request Sent", "Friend request sent successfully", "green");
   }
 
   function notify(title: string, message: string, color: string) {
@@ -99,17 +95,13 @@ function MidContent({ country, username, userId }: MidContentProps) {
     const route = useRouter().route;
     if (route.includes("/profile")) return null;
 
-    return (
-      <button onClick={handleAddFriend} className={styles.add_firend_btn}>
-        Add Friend
-      </button>
-    );
+    const isFriend = userctx?.user?.friends.includes(`${username}#${userId}`)
+      ? true
+      : false;
+
     // USER EXISTS
-    if (authusername) {
-      if (userctx?.user?.friends.includes(`${username}#${userId}`)) {
-        return <button className={styles.add_firend_btn}>Friends</button>;
-      }
-      if (authusername !== username) return null;
+    if (isFriend) {
+      return <button className={styles.add_firend_btn}>Friends</button>;
     }
     return (
       <button onClick={handleAddFriend} className={styles.add_firend_btn}>
