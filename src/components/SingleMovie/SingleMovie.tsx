@@ -5,11 +5,13 @@ import { AiOutlinePlus, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
 import { FiMoreVertical } from "react-icons/fi";
 import { BsShare, BsShareFill } from "react-icons/bs";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { showNotification } from "@mantine/notifications";
 import { avatarStyle } from "@/constants/diceBearStyle";
 import Link from "next/link";
 import moment from "moment";
+import { userContext } from "@/pages/_app";
+import { SuggestToFriendsModal } from "./SuggestToFriendsModal";
 
 export function SingleMovie({
   director,
@@ -75,9 +77,18 @@ export function SingleMovie({
 
 function TopRow({ name, movie }: TopRowProps) {
   const [modal, setModal] = useState(false);
+  const [suggestModal, setSuggestModal] = useState(false);
 
   function handleMoreClick() {
     setModal(!modal);
+  }
+
+  function handleSuggestModal() {
+    setSuggestModal(!suggestModal);
+  }
+
+  function handleCloseSuggestModal() {
+    setSuggestModal(false);
   }
 
   return (
@@ -85,13 +96,22 @@ function TopRow({ name, movie }: TopRowProps) {
       <h2 className={styles.moviename}>{name}</h2>
       <button onClick={handleMoreClick} className={styles.threedot}>
         <FiMoreVertical className={styles.threedot_icon} />
-        {modal && <MoreModal movie={movie} key={movie.id} />}
+        {modal && (
+          <MoreModal
+            movie={movie}
+            key={movie.id}
+            onSuggestClick={handleSuggestModal}
+          />
+        )}
       </button>
+      {suggestModal && (
+        <SuggestToFriendsModal onClose={handleCloseSuggestModal} />
+      )}
     </div>
   );
 }
 
-function MoreModal({ movie }: { movie: Movie }) {
+function MoreModal({ movie, onSuggestClick }: MoreModalProps) {
   const [watchadd, setWatchadd] = useState(false);
   const [favadd, setFavAdd] = useState(false);
 
@@ -175,6 +195,10 @@ function MoreModal({ movie }: { movie: Movie }) {
     }
   }
 
+  function handleSuggestModalClick() {
+    onSuggestClick();
+  }
+
   return (
     <div className={styles.more_container}>
       <button className={styles.btn_box} onClick={handleAddToFavourites}>
@@ -193,12 +217,16 @@ function MoreModal({ movie }: { movie: Movie }) {
         )}
         <span className={styles.text}>Watch Later</span>
       </button>
-      <button className={styles.btn_box}>
+      <button className={styles.btn_box} onClick={handleSuggestModalClick}>
         <BsShareFill size={14} className={styles.share_icon} />
         <span className={styles.text}>Suggest</span>
       </button>
     </div>
   );
+}
+interface MoreModalProps {
+  movie: Movie;
+  onSuggestClick: () => void;
 }
 
 function BottomRow({ release, name, time, userId }: BottomRowProps) {

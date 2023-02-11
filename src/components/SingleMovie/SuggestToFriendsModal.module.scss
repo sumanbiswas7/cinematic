@@ -1,0 +1,35 @@
+@import "../../styles/constants.scss";
+
+.main_container {
+  position: relative;
+}
+
+.container {
+  background-color: rgba($color: #2c2c2c, $alpha: 0.5);
+  backdrop-filter: blur(5px);
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flex-center;
+  animation: fade-in 0.2s;
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.mid_container {
+  width: 20rem;
+  height: 10rem;
+  background-color: rebeccapurple;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
