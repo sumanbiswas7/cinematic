@@ -3,6 +3,8 @@ import { RatingBox } from "./RatingBox";
 import { Tags } from "./Tags";
 import { AiOutlinePlus, AiOutlineStar, AiFillStar } from "react-icons/ai";
 import { MdDone } from "react-icons/md";
+import { FiMoreVertical } from "react-icons/fi";
+import { BsShare, BsShareFill } from "react-icons/bs";
 import { useState, useEffect } from "react";
 import { showNotification } from "@mantine/notifications";
 import { avatarStyle } from "@/constants/diceBearStyle";
@@ -72,6 +74,24 @@ export function SingleMovie({
 }
 
 function TopRow({ name, movie }: TopRowProps) {
+  const [modal, setModal] = useState(false);
+
+  function handleMoreClick() {
+    setModal(!modal);
+  }
+
+  return (
+    <div className={styles.top_row}>
+      <h2 className={styles.moviename}>{name}</h2>
+      <button onClick={handleMoreClick} className={styles.threedot}>
+        <FiMoreVertical className={styles.threedot_icon} />
+        {modal && <MoreModal movie={movie} key={movie.id} />}
+      </button>
+    </div>
+  );
+}
+
+function MoreModal({ movie }: { movie: Movie }) {
   const [watchadd, setWatchadd] = useState(false);
   const [favadd, setFavAdd] = useState(false);
 
@@ -156,24 +176,27 @@ function TopRow({ name, movie }: TopRowProps) {
   }
 
   return (
-    <div className={styles.top_row}>
-      <h2 className={styles.moviename}>{name}</h2>
-      <div className={styles.top_btn_box}>
-        <button className={styles.fav_btn} onClick={handleAddToFavourites}>
-          {favadd ? (
-            <AiFillStar size={20} className={styles.starfill_icon} />
-          ) : (
-            <AiOutlineStar size={20} className={styles.staroutline_icon} />
-          )}
-        </button>
-        <button className={styles.add_btn} onClick={handleAddToWatchLater}>
-          {watchadd ? (
-            <MdDone size={20} className={styles.done_icon} />
-          ) : (
-            <AiOutlinePlus size={20} className={styles.plus_icon} />
-          )}
-        </button>
-      </div>
+    <div className={styles.more_container}>
+      <button className={styles.btn_box} onClick={handleAddToFavourites}>
+        {favadd ? (
+          <AiFillStar size={18} className={styles.starfill_icon} />
+        ) : (
+          <AiOutlineStar size={18} className={styles.staroutline_icon} />
+        )}
+        <span className={styles.text}>Favourites</span>
+      </button>
+      <button className={styles.btn_box} onClick={handleAddToWatchLater}>
+        {watchadd ? (
+          <MdDone size={18} className={styles.done_icon} />
+        ) : (
+          <AiOutlinePlus size={18} className={styles.plus_icon} />
+        )}
+        <span className={styles.text}>Watch Later</span>
+      </button>
+      <button className={styles.btn_box}>
+        <BsShareFill size={14} className={styles.share_icon} />
+        <span className={styles.text}>Suggest</span>
+      </button>
     </div>
   );
 }

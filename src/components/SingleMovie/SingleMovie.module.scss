@@ -195,25 +195,81 @@ $card-size: 18rem;
       border: none;
       background-color: #fff;
     }
-    .plus_icon {
-      transform: translate(1px, 1px);
-    }
-    .done_icon {
-      fill: $accent;
-      transform: translate(1px, 1px);
-    }
 
     .fav_btn {
       background-color: #fff;
       border: none;
     }
-    .starfill_icon {
-      transform: translate(1px, 1px);
-      fill: $accent;
-    }
-    .staroutline_icon {
-      transform: translate(1px, 1px);
-      // fill: $accent;
-    }
+  }
+}
+
+// TOP ROW THREE DOT
+.threedot {
+  background-color: #fff;
+  border: none;
+  cursor: pointer;
+
+  &_icon {
+    fill: $background-dark;
+  }
+}
+
+$bg: #23272a;
+$bg-border: #303030;
+$outline: #3f3f3f;
+$icon: #b9b9b9;
+
+// MORE MODAL
+.more_container {
+  position: absolute;
+  right: 1.5rem;
+  background-color: $bg;
+  padding: 0 1rem;
+  border-radius: 0.2rem;
+  box-shadow: 2px 2px 10px 5px rgba(10, 10, 10, 0.1);
+
+  & > .btn_box {
+    cursor: pointer;
+    background-color: transparent;
+    @include flex-center;
+    padding-block: 0.7rem;
+    padding-right: 1.2rem;
+    border: none;
+    border-bottom: 1px solid $outline;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  & > .btn_box:nth-child(3) {
+    border-bottom: none;
+  }
+
+  .text {
+    font-family: inherit;
+    transform: translateY(5px);
+    color: #fff;
+    margin-left: 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .starfill_icon {
+    transform: translate(1px, 1px);
+    fill: $accent;
+  }
+  .staroutline_icon {
+    transform: translate(1px, 1px);
+    fill: #fff;
+  }
+
+  .plus_icon {
+    transform: translate(1px, 1px);
+    fill: #fff;
+  }
+  .done_icon {
+    fill: $accent;
+    transform: translate(1px, 1px);
+  }
+  .share_icon {
+    margin-right: 0.2rem;
+    fill: #fff;
   }
 }
