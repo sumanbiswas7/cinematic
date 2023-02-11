@@ -70,7 +70,7 @@ export function FriendRequest({ id, image, name, time, fromId }: Props) {
       <img src={image} />
 
       <div className={styles.info_box}>
-        <Link href={`/users/${id}`} className={styles.next_link}>
+        <Link href={`/users/${fromId}`} className={styles.next_link}>
           <p className={styles.name}>{name}</p>
         </Link>
         <p>wants to be a friend</p>
