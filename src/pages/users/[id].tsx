@@ -9,6 +9,7 @@ import { useContext, useEffect } from "react";
 import { userContext } from "../_app";
 import { app } from "@/firebase/firebaseConfig";
 import { ScreenLoader } from "@/components/Loader/ScreenLoader";
+import { Opps } from "@/components/Error/Opps";
 
 export default function UserById() {
   const router = useRouter();
@@ -23,7 +24,7 @@ export default function UserById() {
   }, []);
 
   if (res.loading || res2.loading) return <ScreenLoader />;
-  if (res.error) return <h1>Error</h1>;
+  if (res.error) return <Opps />;
 
   function handleGetAuthUser() {
     const auth = getAuth(app);

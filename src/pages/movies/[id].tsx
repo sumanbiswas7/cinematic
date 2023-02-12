@@ -1,3 +1,4 @@
+import { Opps } from "@/components/Error/Opps";
 import { ScreenLoader } from "@/components/Loader/ScreenLoader";
 import { NavBar } from "@/components/Navbar/NavBar";
 import { SingleMovie } from "@/components/SingleMovie/SingleMovie";
@@ -17,7 +18,7 @@ export default function MovieById() {
   });
 
   if (loading) return <ScreenLoader />;
-  if (error) return <p>Error : {error.message}</p>;
+  if (error) return <Opps />;
   const movie = data.get_movie as Movie;
 
   return (
