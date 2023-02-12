@@ -1,3 +1,4 @@
+import { ScreenLoader } from "@/components/Loader/ScreenLoader";
 import { NavBar } from "@/components/Navbar/NavBar";
 import { SingleMovie } from "@/components/SingleMovie/SingleMovie";
 import { GET_MOVIE } from "@/graphql/queries/movieQueries";
@@ -15,7 +16,7 @@ export default function MovieById() {
     variables: { movieId },
   });
 
-  if (loading) return <p>Loading</p>;
+  if (loading) return <ScreenLoader />;
   if (error) return <p>Error : {error.message}</p>;
   const movie = data.get_movie as Movie;
 

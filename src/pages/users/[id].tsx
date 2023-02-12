@@ -8,6 +8,7 @@ import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { useContext, useEffect } from "react";
 import { userContext } from "../_app";
 import { app } from "@/firebase/firebaseConfig";
+import { ScreenLoader } from "@/components/Loader/ScreenLoader";
 
 export default function UserById() {
   const router = useRouter();
@@ -21,7 +22,7 @@ export default function UserById() {
     handleGetAuthUser();
   }, []);
 
-  if (res.loading || res2.loading) return <h1>Loading</h1>;
+  if (res.loading || res2.loading) return <ScreenLoader />;
   if (res.error) return <h1>Error</h1>;
 
   function handleGetAuthUser() {
