@@ -33,8 +33,11 @@ export function NewMovie() {
     <div className={styles.container}>
       {/* <TopNavBar /> */}
       <div className={styles.from_flex_container}>
-        <img className={styles.movie_img} src="/upload/upload.jpg" />
+        <div className={styles.img_container}>
+          <img className={styles.movie_img} src="/upload/upload.jpg" />
+        </div>
         <form className={styles.form_container}>
+          <h2 className={styles.upload_text}>Upload Movie</h2>
           <div className={styles.two_row}>
             <TextInput
               label="Name"
@@ -61,7 +64,7 @@ export function NewMovie() {
               label="Genre"
               withAsterisk
               placeholder="Crime, Drama"
-              classNames={{ input: styles.input }}
+              classNames={{ input: `${styles.input} ${styles.genre_input}` }}
               searchable
             />
           </div>

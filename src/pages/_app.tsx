@@ -12,7 +12,11 @@ export default function App({ Component, pageProps }: AppProps) {
   const [user, setUser] = useState(null);
 
   return (
-    <MantineProvider withNormalizeCSS withGlobalStyles>
+    <MantineProvider
+      withNormalizeCSS
+      withGlobalStyles
+      theme={{ primaryColor: "red" }}
+    >
       <NotificationsProvider>
         <userContext.Provider value={{ user, setUser }}>
           <ApolloProvider client={client}>

@@ -1,38 +1,62 @@
 @import "../../styles/constants.scss";
 
+$form-breakpoint: 880px;
+
 .container {
+  @include flex-center;
+  height: 100vh;
+
+  @media only screen and (width<=$form-breakpoint) {
+    flex-direction: column;
+  }
 }
 
 .from_flex_container {
   @include flex-center;
-  height: 100vh;
+  background-color: rebeccapurple;
+  min-height: 26.5rem;
+  padding-left: 20rem;
+  position: relative;
+  border-radius: 0.3rem;
+  overflow: hidden;
 
-  @media only screen and (width<=850px) {
-    flex-direction: column;
-    height: auto;
+  @media only screen and (width<=$form-breakpoint) {
+    padding: 0;
   }
 }
 
+// FLEX CHILD-1
+.img_container {
+  background-color: green;
+  height: 100%;
+  width: 20rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  @media only screen and (width<=$form-breakpoint) {
+    display: none;
+  }
+}
 .movie_img {
-  height: 26.5rem;
-  border-top-left-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
-  @media only screen and (width<=850px) {
-    height: 15rem;
-    border-radius: 0.3rem;
-    margin-block: 1rem;
-  }
+  width: 100%;
+  height: 100%;
 }
+
+// FLEX CHILD-2
 .form_container {
   background-color: #fff;
-  border-top-right-radius: 0.3rem;
-  border-bottom-right-radius: 0.3rem;
   padding: 1rem;
   min-width: 35rem;
-  height: 26.5rem;
-  @media only screen and (width<=850px) {
+
+  .upload_text {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    color: #212529;
+    font-weight: 500;
+  }
+
+  @media only screen and (width<=$form-breakpoint) {
     min-width: 95%;
-    border-radius: 0.3rem;
     margin-bottom: 1rem;
   }
 }
@@ -41,6 +65,10 @@
   &:focus {
     border-color: $accent;
   }
+}
+.genre_input {
+  max-width: 20rem;
+  max-height: 2.2rem;
 }
 
 .two_row {
@@ -68,7 +96,7 @@
 .upload_btn {
   background-color: $accent;
   border: none;
-  height: 2rem;
+  height: 2.2rem;
   margin-top: 1rem;
   width: 100%;
   font-family: inherit;
