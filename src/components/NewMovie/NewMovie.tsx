@@ -1,11 +1,13 @@
 import {
+  Loader,
   MultiSelect,
   Rating,
   Textarea,
   TextInput,
   Tooltip,
 } from "@mantine/core";
-import { useState, useEffect } from "react";
+import { showNotification } from "@mantine/notifications";
+import React, { useState, useEffect, useRef, MutableRefObject } from "react";
 import { TopNavBar } from "../TopNavBar/TopNavBar";
 import styles from "./NewMovie.module.scss";
 
@@ -33,9 +35,16 @@ const movieGenres = [
 ];
 
 export function NewMovie() {
+  const [rating, setRating] = useState(6.5);
   const [casts, setCasts] = useState<string[] | []>([]);
+  const [genre, setGenre] = useState([""]);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const directorRef = useRef<HTMLInputElement>(null);
+  const releaseRef = useRef<HTMLInputElement>(null);
+  const descriptionRef = useRef<HTMLTextAreaElement>(null);
+  const [submitting, setSubmitting] = useState(false);
   const [img, setImg] = useState<ImgState>({
-    preview: "/upload/upload_here.png",
+    preview: "/upload/upload.webp",
     file: null,
   });
 
@@ -44,6 +53,57 @@ export function NewMovie() {
     if (!imgFile) return;
     const preiewUrl = URL.createObjectURL(imgFile);
     setImg({ preview: preiewUrl, file: imgFile });
+  }
+
+  async function handleFormSubmit(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault();
+    // handling genre and casts error
+    if (!genre.length || genre.length > 2) {
+      return notify(
+        "Fill Genre Tags Correctly",
+        "Genre tags must be filled and not exceed 2",
+        "orange"
+      );
+    }
+    if (!casts.length || casts.length > 2) {
+      return notify(
+        "Fill Casts Tags Correctly",
+        "Casts tags must be filled and not exceed 2",
+        "orange"
+      );
+    }
+
+    const joinedGenre = genre.join("#");
+    const joinedCasts = casts.join("#");
+
+    const name = nameRef.current?.value;
+    const director = directorRef.current?.value;
+    const release = releaseRef.current?.value;
+    const description = descriptionRef.current?.value;
+
+    // handling other errors
+    if (!name || !director || !release || !description) {
+      return notify(
+        "Fill the form correctly",
+        "You must fill everything with a red asterisk",
+        "orange"
+      );
+    }
+
+    // Upload Image
+
+    const data = {
+      image: "uploaded image url",
+      rating,
+      name,
+      director,
+      release,
+      genre: joinedGenre,
+      casts: joinedCasts,
+      description,
+    };
+    setSubmitting(true);
+    console.log(data);
   }
 
   return (
@@ -55,7 +115,14 @@ export function NewMovie() {
             <img className={styles.movie_img} src={img.preview} />
             <div className={styles.rating_box_big}>
               <p className={styles.rate_text}>Rate your movie out of 10</p>
-              <Rating fractions={4} count={10} size="md" color={"accent"} />
+              <Rating
+                onChange={setRating}
+                value={rating}
+                fractions={2}
+                count={10}
+                size="md"
+                color={"accent"}
+              />
             </div>
           </label>
           <input
@@ -69,13 +136,21 @@ export function NewMovie() {
         </div>
         <div className={styles.rating_box_small}>
           <p className={styles.rate_text}>Rate your movie out of 10</p>
-          <Rating fractions={4} count={10} size="md" color={"accent"} />
+          <Rating
+            onChange={setRating}
+            value={rating}
+            fractions={2}
+            count={10}
+            size="md"
+            color={"accent"}
+          />
         </div>
         <form className={styles.form_container}>
           <h2 className={styles.upload_text}>Upload Movie</h2>
           <div className={styles.two_row}>
             <TextInput
               label="Name"
+              ref={nameRef}
               withAsterisk
               placeholder="Pulp Fiction"
               classNames={{ input: styles.input }}
@@ -85,6 +160,7 @@ export function NewMovie() {
               withAsterisk
               placeholder="Quentin Tarantino"
               classNames={{ input: styles.input }}
+              ref={directorRef}
             />
           </div>
           <div className={styles.two_row}>
@@ -93,9 +169,15 @@ export function NewMovie() {
               withAsterisk
               placeholder="1994"
               classNames={{ input: styles.input }}
+              ref={releaseRef}
+              type="number"
+              min="1900"
+              max="2025"
             />
             <MultiSelect
               data={movieGenres}
+              value={genre}
+              onChange={setGenre}
               label="Genre"
               withAsterisk
               placeholder="Crime, Drama"
@@ -123,12 +205,28 @@ export function NewMovie() {
             withAsterisk
             placeholder="In the realm of underworld, a series of incidents intertwines the lives of two Los Angeles mobsters, a gangster's wife, a boxer and two small-time criminals."
             classNames={{ input: styles.areainput }}
+            ref={descriptionRef}
           />
-          <button className={styles.upload_btn}>Upload</button>
+          <button
+            disabled={submitting}
+            onClick={handleFormSubmit}
+            className={styles.upload_btn}
+          >
+            {submitting ? <Loader size={"xs"} color="white" /> : "Upload"}
+          </button>
         </form>
       </div>
     </div>
   );
+
+  function notify(title: string, message: string, color: string) {
+    showNotification({
+      autoClose: 1500,
+      title,
+      message,
+      color,
+    });
+  }
 }
 
 interface ImgState {
