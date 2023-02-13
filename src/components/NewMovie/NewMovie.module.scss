@@ -61,6 +61,9 @@
 }
 .areainput {
   min-height: 7rem;
+  &:focus {
+    border-color: $accent;
+  }
 }
 .upload_btn {
   background-color: $accent;
@@ -75,4 +78,5 @@
   text-transform: uppercase;
   border-radius: 0.25rem;
   cursor: pointer;
+  -webkit-font-smoothing: antialiased;
 }
