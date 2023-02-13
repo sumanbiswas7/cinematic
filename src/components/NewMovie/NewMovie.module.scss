@@ -3,9 +3,38 @@
 .container {
 }
 
+.from_flex_container {
+  @include flex-center;
+  height: 100vh;
+
+  @media only screen and (width<=850px) {
+    flex-direction: column;
+    height: auto;
+  }
+}
+
+.movie_img {
+  height: 26.5rem;
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+  @media only screen and (width<=850px) {
+    height: 15rem;
+    border-radius: 0.3rem;
+    margin-block: 1rem;
+  }
+}
 .form_container {
   background-color: #fff;
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
   padding: 1rem;
+  min-width: 35rem;
+  height: 26.5rem;
+  @media only screen and (width<=850px) {
+    min-width: 95%;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .input {
@@ -32,4 +61,18 @@
 }
 .areainput {
   min-height: 7rem;
+}
+.upload_btn {
+  background-color: $accent;
+  border: none;
+  height: 2rem;
+  margin-top: 1rem;
+  width: 100%;
+  font-family: inherit;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  border-radius: 0.25rem;
+  cursor: pointer;
 }
