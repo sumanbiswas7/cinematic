@@ -1,4 +1,10 @@
-import { MultiSelect, Textarea, TextInput, Tooltip } from "@mantine/core";
+import {
+  MultiSelect,
+  Rating,
+  Textarea,
+  TextInput,
+  Tooltip,
+} from "@mantine/core";
 import { useState, useEffect } from "react";
 import { TopNavBar } from "../TopNavBar/TopNavBar";
 import styles from "./NewMovie.module.scss";
@@ -28,13 +34,42 @@ const movieGenres = [
 
 export function NewMovie() {
   const [casts, setCasts] = useState<string[] | []>([]);
+  const [img, setImg] = useState<ImgState>({
+    preview: "/upload/upload_here.png",
+    file: null,
+  });
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const imgFile = e.target.files![0];
+    if (!imgFile) return;
+    const preiewUrl = URL.createObjectURL(imgFile);
+    setImg({ preview: preiewUrl, file: imgFile });
+  }
 
   return (
     <div className={styles.container}>
       {/* <TopNavBar /> */}
       <div className={styles.from_flex_container}>
         <div className={styles.img_container}>
-          <img className={styles.movie_img} src="/upload/upload.jpg" />
+          <label htmlFor="imgInput" className={styles.img_label}>
+            <img className={styles.movie_img} src={img.preview} />
+            <div className={styles.rating_box_big}>
+              <p className={styles.rate_text}>Rate your movie out of 10</p>
+              <Rating fractions={4} count={10} size="md" color={"accent"} />
+            </div>
+          </label>
+          <input
+            type="file"
+            name="file"
+            id="imgInput"
+            accept="image/png, image/jpg, image/jpeg"
+            className={styles.image_input}
+            onChange={handleImageChange}
+          />
+        </div>
+        <div className={styles.rating_box_small}>
+          <p className={styles.rate_text}>Rate your movie out of 10</p>
+          <Rating fractions={4} count={10} size="md" color={"accent"} />
         </div>
         <form className={styles.form_container}>
           <h2 className={styles.upload_text}>Upload Movie</h2>
@@ -94,4 +129,9 @@ export function NewMovie() {
       </div>
     </div>
   );
+}
+
+interface ImgState {
+  file: File | null;
+  preview: string;
 }
