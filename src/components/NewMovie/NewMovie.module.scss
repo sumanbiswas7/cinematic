@@ -1,0 +1,35 @@
+@import "../../styles/constants.scss";
+
+.container {
+}
+
+.form_container {
+  background-color: #fff;
+  padding: 1rem;
+}
+
+.input {
+  &:focus {
+    border-color: $accent;
+  }
+}
+
+.two_row {
+  @include flex-center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+
+  & > *:nth-child(1) {
+    flex: 1 1 50%;
+  }
+  & > *:nth-child(2) {
+    flex: 1 1 50%;
+  }
+}
+.margin_btm {
+  margin-bottom: 0.5rem;
+}
+.areainput {
+  min-height: 7rem;
+}

@@ -38,7 +38,7 @@ export function NavModal({ onFrndsModal }: Props) {
           <NavIconLink
             icon={<AiOutlinePlus fill="#B9B9B9" />}
             title="New Movie"
-            href="/"
+            href="/upload"
           />
           <FriendsBtn handleClick={handleFriendsModalClick} />
           <LogOutBtn />
