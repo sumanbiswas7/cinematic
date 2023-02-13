@@ -8,12 +8,12 @@ $form-breakpoint: 880px;
 
   @media only screen and (width<=$form-breakpoint) {
     flex-direction: column;
+    height: auto;
   }
 }
 
 .from_flex_container {
   @include flex-center;
-  background-color: rebeccapurple;
   min-height: 26.5rem;
   padding-left: 20rem;
   position: relative;
@@ -22,24 +22,39 @@ $form-breakpoint: 880px;
 
   @media only screen and (width<=$form-breakpoint) {
     padding: 0;
+    flex-direction: column;
   }
+}
+.image_input {
+  display: none;
+}
+.img_label {
+  cursor: pointer;
 }
 
 // FLEX CHILD-1
 .img_container {
-  background-color: green;
   height: 100%;
   width: 20rem;
   position: absolute;
   top: 0;
   left: 0;
+
   @media only screen and (width<=$form-breakpoint) {
-    display: none;
+    position: static;
+    margin-block: 1rem;
+    width: 10rem;
+    height: 15rem;
   }
 }
 .movie_img {
   width: 100%;
   height: 100%;
+  object-position: center;
+  object-fit: cover;
+  @media only screen and (width<=$form-breakpoint) {
+    border-radius: 0.3rem;
+  }
 }
 
 // FLEX CHILD-2
@@ -58,6 +73,7 @@ $form-breakpoint: 880px;
   @media only screen and (width<=$form-breakpoint) {
     min-width: 95%;
     margin-bottom: 1rem;
+    border-radius: 0.3rem;
   }
 }
 
