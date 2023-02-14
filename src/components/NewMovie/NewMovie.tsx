@@ -1,6 +1,8 @@
+import { ADD_MOVIE } from "@/graphql/mutations/movieMutations";
 import { GET_UPLOAD_URL } from "@/graphql/queries/uploadQueries";
+import { userContext } from "@/pages/_app";
 import { uploadImagetoS3 } from "@/server/uploadImageToS3";
-import { useLazyQuery } from "@apollo/client";
+import { useLazyQuery, useMutation } from "@apollo/client";
 import {
   Loader,
   MultiSelect,
@@ -10,7 +12,7 @@ import {
   Tooltip,
 } from "@mantine/core";
 import { showNotification } from "@mantine/notifications";
-import React, { useState, useEffect, useRef, MutableRefObject } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import { TopNavBar } from "../TopNavBar/TopNavBar";
 import styles from "./NewMovie.module.scss";
 
@@ -38,7 +40,9 @@ const movieGenres = [
 ];
 
 export function NewMovie() {
+  const userctx = useContext(userContext);
   const [getUploadUrl] = useLazyQuery(GET_UPLOAD_URL);
+  const [addMovieToDB] = useMutation(ADD_MOVIE);
   const [rating, setRating] = useState(6.5);
   const [casts, setCasts] = useState<string[] | []>([]);
   const [genre, setGenre] = useState([""]);
@@ -59,9 +63,37 @@ export function NewMovie() {
     setImg({ preview: preiewUrl, file: imgFile });
   }
 
+  function emptyForm() {
+    const nameC = nameRef.current!;
+    const directorC = directorRef.current!;
+    const relaseC = releaseRef.current!;
+    const descriptionC = descriptionRef.current!;
+
+    nameC.value = "";
+    directorC.value = "";
+    relaseC.value = "";
+    descriptionC.value = "";
+    setGenre([]);
+    setCasts([]);
+    setRating(6.5);
+    setImg({
+      preview: "/upload/upload.webp",
+      file: null,
+    });
+  }
+
   async function handleFormSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
-    // const res = uploadImagetoS3(img.file,);
+
+    const user = userctx?.user;
+    if (!user?.id) {
+      return notify(
+        "User not found",
+        "You must be signed in to upload a movie",
+        "red"
+      );
+    }
+    // handling genre, casts, img error
     if (!img.file) {
       return notify(
         "No image uploaded",
@@ -69,15 +101,6 @@ export function NewMovie() {
         "orange"
       );
     }
-    const { data, error } = await getUploadUrl();
-    if (error) return;
-    const uploadUrl = data.upload;
-    console.log(uploadUrl);
-    const uploadedImg = await uploadImagetoS3(img.file!, uploadUrl);
-    console.log(uploadedImg);
-
-    return;
-    // handling genre and casts error
     if (!genre.length || genre.length > 2) {
       return notify(
         "Fill Genre Tags Correctly",
@@ -110,20 +133,52 @@ export function NewMovie() {
       );
     }
 
-    // Upload Image
+    setSubmitting(true);
+    // Uploading Image
+    const { data, error } = await getUploadUrl();
+    if (error) {
+      return notify(
+        "Opps something went wrong",
+        "Sorry something is wrong with the server can't upload image",
+        "red"
+      );
+    }
+    const uploadUrl = data.upload;
+    const uploadedImg = await uploadImagetoS3(img.file!, uploadUrl);
+    if (uploadUrl.err) {
+      return notify(
+        "Can't upload image",
+        "Sorry something is wrong with the server can't upload image",
+        "red"
+      );
+    }
 
+    // Uploading Movie
     const movie = {
-      image: "uploaded image url",
+      image: uploadedImg.url,
       rating,
       name,
       director,
-      release,
-      genre: joinedGenre,
+      release: parseInt(release),
+      type: joinedGenre,
       casts: joinedCasts,
       description,
+      userId: user.id,
     };
-    setSubmitting(true);
-    console.log(data);
+    console.log(movie);
+    const { errors } = await addMovieToDB({ variables: { movie } });
+    if (errors?.length) {
+      notify(
+        "Can't upload Movie",
+        "Sorry something is wrong with the server can't upload movie",
+        "red"
+      );
+      setSubmitting(false);
+      return;
+    }
+    emptyForm();
+    setSubmitting(false);
+    notify("Movie Uploaded", "Your movie successfully added", "green");
   }
 
   return (
@@ -208,6 +263,7 @@ export function NewMovie() {
           <MultiSelect
             data={casts}
             creatable
+            value={casts}
             label="Casts"
             withAsterisk
             placeholder="John Travolta, Samuel L. Jackson"
