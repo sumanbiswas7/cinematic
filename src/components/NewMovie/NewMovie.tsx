@@ -1,3 +1,6 @@
+import { GET_UPLOAD_URL } from "@/graphql/queries/uploadQueries";
+import { uploadImagetoS3 } from "@/server/uploadImageToS3";
+import { useLazyQuery } from "@apollo/client";
 import {
   Loader,
   MultiSelect,
@@ -35,6 +38,7 @@ const movieGenres = [
 ];
 
 export function NewMovie() {
+  const [getUploadUrl] = useLazyQuery(GET_UPLOAD_URL);
   const [rating, setRating] = useState(6.5);
   const [casts, setCasts] = useState<string[] | []>([]);
   const [genre, setGenre] = useState([""]);
@@ -57,6 +61,22 @@ export function NewMovie() {
 
   async function handleFormSubmit(e: React.MouseEvent<HTMLButtonElement>) {
     e.preventDefault();
+    // const res = uploadImagetoS3(img.file,);
+    if (!img.file) {
+      return notify(
+        "No image uploaded",
+        "Please upload your movie's poster on Upload Image box",
+        "orange"
+      );
+    }
+    const { data, error } = await getUploadUrl();
+    if (error) return;
+    const uploadUrl = data.upload;
+    console.log(uploadUrl);
+    const uploadedImg = await uploadImagetoS3(img.file!, uploadUrl);
+    console.log(uploadedImg);
+
+    return;
     // handling genre and casts error
     if (!genre.length || genre.length > 2) {
       return notify(
@@ -92,7 +112,7 @@ export function NewMovie() {
 
     // Upload Image
 
-    const data = {
+    const movie = {
       image: "uploaded image url",
       rating,
       name,

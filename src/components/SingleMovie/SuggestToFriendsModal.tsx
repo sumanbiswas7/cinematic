@@ -1,9 +1,9 @@
 import { avatarStyle } from "@/constants/diceBearStyle";
 import { SEND_SUGGESTION } from "@/graphql/mutations/notificationMutations";
 import { userContext } from "@/pages/_app";
-import { useLazyQuery, useMutation } from "@apollo/client";
+import { useMutation } from "@apollo/client";
 import { showNotification } from "@mantine/notifications";
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import styles from "./SuggestToFriendsModal.module.scss";
 
 export function SuggestToFriendsModal({ onClose, movie }: Props) {
